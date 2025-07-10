@@ -12,6 +12,7 @@
     *{margin:0;padding:0;box-sizing:border-box;}
     body{font-family:'Open Sans',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;scroll-behavior:smooth;}
     h1,h2,h3{font-family:'Poppins',sans-serif;}
+    /* Header */
     header{background:var(--primary);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;position:sticky;top:0;z-index:1000;}
     .logo{font-size:1.6rem;font-weight:600;}
     nav ul{list-style:none;display:flex;gap:1rem;}
@@ -32,6 +33,7 @@
     #hero p{font-size:1.1rem;margin-bottom:2rem;}
     .btn{background:var(--accent);color:#fff;padding:.75rem 1.5rem;border:none;border-radius:var(--radius);cursor:pointer;font-weight:600;text-decoration:none;display:inline-block;}
     .btn:hover{background:var(--highlight);}   
+    /* Sections */
     section{padding:3.5rem 1.5rem;scroll-margin-top:80px;}
     .container{max-width:1200px;margin:0 auto;}
     .grid{display:grid;gap:2rem;}
@@ -78,7 +80,7 @@
   <section id="hero">
     <div class="content">
       <h1>Importez votre auto de rêve sans stress</h1>
-      <p>De la recherche jusqu’à l’expédition, nous gérons tout pour vous.</p>
+      <p>De la recherche jusqu’à l'expédition, nous gérons tout pour vous.</p>
       <a href="#contact" class="btn">Demandez un devis</a>
     </div>
   </section>
@@ -87,10 +89,10 @@
     <div class="container">
       <h2 style="text-align:center;margin-bottom:2rem;">Nos services</h2>
       <div class="grid two-col">
-        <div class="card"><h3>Vehicle Sourcing</h3><p>Nous trouvons la meilleure qualité directement à la source.</p></div>
-        <div class="card"><h3>Pre‑Purchase Inspection</h3><p>Rapport indépendant 150 points avec photos & scan OBD.</p></div>
-        <div class="card"><h3>Shipping Logistics</h3><p>RORO ou conteneur, nous réservons les meilleures traversées.</p></div>
-        <div class="card"><h3>Marine Insurance</h3><p>Couverture tous-risques jusqu’à la valeur CIF.</p></div>
+        <div class="card"><h3 data-i18n="service1-title">Vehicle Sourcing</h3><p data-i18n="service1-desc">Nous trouvons la meilleure qualité directement à la source.</p></div>
+        <div class="card"><h3 data-i18n="service2-title">Pre‑Purchase Inspection</h3><p data-i18n="service2-desc">Rapport indépendant 150 points avec photos & scan OBD.</p></div>
+        <div class="card"><h3 data-i18n="service3-title">Shipping Logistics</h3><p data-i18n="service3-desc">RORO ou conteneur, nous réservons les meilleures traversées.</p></div>
+        <div class="card"><h3 data-i18n="service4-title">Marine Insurance</h3><p data-i18n="service4-desc">Couverture tous-risques jusqu’à la valeur CIF.</p></div>
       </div>
     </div>
   </section>
@@ -99,7 +101,7 @@
     <div class="container">
       <h2 style="text-align:center;margin-bottom:2rem;">Comment ça marche ?</h2>
       <ol class="steps">
-        <li>Demande de devis → Proposition de véhicules</li>
+        <li>Demande de devis &rarr; Proposition de véhicules</li>
         <li>Inspection & confirmation de prix</li>
         <li>Paiement</li>
         <li>Réservation RORO & expédition</li>
@@ -117,7 +119,7 @@
         <div class="card inv-card"><img src="toyota-prado.jpg" alt="Land Cruiser Prado"/><div class="card-body"><h3>Prado 2024</h3><p>20 000 km · Prix sur demande</p></div></div>
         <div class="card inv-card"><img src="toyota-hilux.jpg" alt="Hilux Revo"/><div class="card-body"><h3>Hilux Revo 2025</h3><p>6 000 km · Prix sur demande</p></div></div>
       </div>
-      <p style="text-align:center;margin-top:1rem;font-size:.9rem;">Your car is not on here? Send us details of the car.</p>
+      <p style="text-align:center;margin-top:1rem;font-size:.9rem;">Your car is not on here? <a href="#contact">Send us details of the car.</a></p>
     </div>
   </section>
 
@@ -125,8 +127,11 @@
     <div class="container">
       <h2 style="text-align:center;margin-bottom:2rem;">FAQ</h2>
       <details><summary>Combien de temps prend la livraison ?</summary><p>Environ 5–7 semaines selon l'itinéraire.</p></details>
-      <details><summary>Quelles méthodes de paiement acceptez-vous ?</summary><p>Virement bancaire, lettre de crédit ou Escrow.</p></details>
-      <details><summary>Puis-je assurer le transport ?</summary><p>Oui, assurance tous-risques disponible.</p></details>
+      <details><summary>Quelles méthodes de paiement acceptez-vous ?</summary><p>Virement bancaire, cash.</p></details>
+      <details><summary>Vos véhicules sont-ils d'origine ?</summary><p>Oui, tous nos véhicules sont du pays où ils sont fabriqués.</p></details>
+      <details><summary>Qui paie les frais de la douane et les VTA ?</summary><p>Le client est responsable du paiement des frais pour récupérer sa voiture au port.</p></details>
+      <details><summary>Vous délivrerez tous les documents avant l'arrivée de l'auto ?</summary><p>Oui, tous les documents seront expédiés à l'acheteur avant l'arrivée de l'auto au port de destination.</p></details>
+      <details><summary>Est-ce que je peux faire une demande d'un véhicule sur le site ?</summary><p>Oui, envoyez-nous les détails du véhicule.</p></details>
     </div>
   </section>
 
