@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Autoimports | Courtier import auto</title>
+  <title>Autoimports | Courtier import auto</title>
   <!-- Google Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-yY9n+4Px0w0cV+x1JbfSfrWt4F72vpEBWSwR9E+TZY4pP9z04IoxJUzQ7yDLhp5P3wRA1M7ythMZ1m8UZOiOMA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -12,9 +12,8 @@
     *{margin:0;padding:0;box-sizing:border-box;}
     body{font-family:'Open Sans',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;scroll-behavior:smooth;}
     h1,h2,h3{font-family:'Poppins',sans-serif;}
-    /* Header */
-    header{background:var(--primary);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;position:sticky;top:0;z-index:1000;}
-    .logo{font-size:1.4rem;font-weight:600;}
+    header{background:var(--primary);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;position:sticky;top:0;z-index:1000;}
+    .logo{font-size:1.6rem;font-weight:600;}
     nav ul{list-style:none;display:flex;gap:1rem;}
     nav a{color:#fff;text-decoration:none;font-weight:500;transition:opacity .2s;}
     nav a:hover{opacity:.7;}
@@ -24,7 +23,7 @@
     #burger span{background:#fff;height:3px;width:100%;position:absolute;left:0;transition:.3s;}
     #burger span:nth-child(1){top:0;}#burger span:nth-child(2){top:7px;}#burger span:nth-child(3){top:14px;}
     @media(max-width:700px){nav ul{display:none;}#burger{display:block;}}
-    .open nav ul{display:flex;flex-direction:column;gap:.75rem;position:absolute;top:60px;left:0;width:100%;background:var(--primary);padding:1rem;}
+    .open nav ul{display:flex;flex-direction:column;gap:1rem;position:absolute;top:60px;left:0;width:100%;background:var(--primary);padding:1rem;}
     /* Hero */
     #hero{height:80vh;min-height:480px;background:url('hero.jpg') center/cover no-repeat;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;}
     #hero::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45);} 
@@ -33,46 +32,40 @@
     #hero p{font-size:1.1rem;margin-bottom:2rem;}
     .btn{background:var(--accent);color:#fff;padding:.75rem 1.5rem;border:none;border-radius:var(--radius);cursor:pointer;font-weight:600;text-decoration:none;display:inline-block;}
     .btn:hover{background:var(--highlight);}   
-    /* Sections */
-    section{padding:3.5rem 1.25rem;scroll-margin-top:70px;}
+    section{padding:3.5rem 1.5rem;scroll-margin-top:80px;}
     .container{max-width:1200px;margin:0 auto;}
     .grid{display:grid;gap:2rem;}
     .two-col{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
-    /* Cards */
     .card{background:#fff;border:1px solid #e0e4ea;border-radius:var(--radius);box-shadow:0 2px 4px rgba(0,0,0,.05);padding:1.25rem;}
-    .card h3{margin-bottom:.5rem;color:var(--primary);}  
-    /* Inventory */
+    .card h3{margin-bottom:.5rem;color:var(--primary);}
     .inventory{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));}
-    .inv-card img{width:100%;border-top-left-radius:var(--radius);border-top-right-radius:var(--radius);}    
+    .inv-card img{width:100%;border-top-left-radius:var(--radius);border-top-right-radius:var(--radius);}
     .inv-card .card-body{padding:1rem;}
-    /* Steps */
     .steps{counter-reset:step;}
     .steps li{list-style:none;position:relative;padding-left:2.5rem;margin-bottom:1rem;}
     .steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;background:var(--accent);color:#fff;width:2rem;height:2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;}
-    /* FAQ */
     details{background:#fff;border:1px solid #e0e4ea;border-radius:var(--radius);padding:1rem;margin-bottom:1rem;cursor:pointer;}
     summary{font-weight:600;}
-    /* Form */
     form{display:flex;flex-direction:column;gap:1rem;max-width:500px;margin:0 auto;}
     input,textarea{padding:.75rem;border:1px solid #ccd1d9;border-radius:var(--radius);font-size:1rem;}
     /* Footer */
-    footer{background:var(--primary);color:#fff;text-align:center;padding:1rem;font-size:.9rem;display:flex;flex-direction:column;gap:.5rem;align-items:center;}
-    footer a{color:#fff;text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.4rem;}
+    footer{background:var(--primary);color:#fff;text-align:center;padding:1.5rem;font-size:.9rem;display:flex;flex-direction:column;gap:.5rem;align-items:center;}
+    footer a{color:#fff;text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.5rem;}
     footer i{font-size:1rem;}
     @media(max-width:600px){#hero h1{font-size:2.2rem;}}
   </style>
 </head>
 <body>
   <header>
-    <div class="logo" data-i18n="logo">Autoimports</div>
+    <div class="logo">Autoimports</div>
     <div id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
     <nav>
       <ul>
-        <li><a href="#hero" data-i18n="nav-home">Accueil</a></li>
-        <li><a href="#inventory" data-i18n="nav-inventory">Stock</a></li>
-        <li><a href="#how" data-i18n="nav-how">Processus</a></li>
-        <li><a href="#faqs" data-i18n="nav-faqs">FAQ</a></li>
-        <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
+        <li><a href="#hero">Accueil</a></li>
+        <li><a href="#inventory">Stock</a></li>
+        <li><a href="#how">Processus</a></li>
+        <li><a href="#faqs">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
     <select id="lang-select" onchange="switchLang(this.value)">
@@ -82,19 +75,87 @@
     </select>
   </header>
 
-  <!-- Hero -->
   <section id="hero">
     <div class="content">
-      <h1 data-i18n="hero-h1">Importez votre auto de rêve sans stress</h1>
-      <p data-i18n="hero-p">De la recherche jusqu’à l’expédition, nous gérons tout pour vous.</p>
-      <a href="#contact" class="btn" data-i18n="hero-btn">Demandez un devis</a>
+      <h1>Importez votre auto de rêve sans stress</h1>
+      <p>De la recherche jusqu’à l’expédition, nous gérons tout pour vous.</p>
+      <a href="#contact" class="btn">Demandez un devis</a>
     </div>
   </section>
 
-  <!-- Services -->
   <section id="services">
     <div class="container">
-      <h2 style="text-align:center;margin-bottom:2rem;" data-i18n="services-title">Nos services</h2>
+      <h2 style="text-align:center;margin-bottom:2rem;">Nos services</h2>
       <div class="grid two-col">
-        <div class="card"><h3 data-i18n="service1-title">Vehicle Sourcing</h3><p data-i18n="service1-desc">Nous trouvons la meilleure qualité directement à la source.</p></div>
-        <div class="card"><h3 data-i18n="service2-title">Pre‑Purchase Inspection</h3><p data-i18n
+        <div class="card"><h3>Vehicle Sourcing</h3><p>Nous trouvons la meilleure qualité directement à la source.</p></div>
+        <div class="card"><h3>Pre‑Purchase Inspection</h3><p>Rapport indépendant 150 points avec photos & scan OBD.</p></div>
+        <div class="card"><h3>Shipping Logistics</h3><p>RORO ou conteneur, nous réservons les meilleures traversées.</p></div>
+        <div class="card"><h3>Marine Insurance</h3><p>Couverture tous-risques jusqu’à la valeur CIF.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="container">
+      <h2 style="text-align:center;margin-bottom:2rem;">Comment ça marche ?</h2>
+      <ol class="steps">
+        <li>Demande de devis → Proposition de véhicules</li>
+        <li>Inspection & confirmation de prix</li>
+        <li>Paiement</li>
+        <li>Réservation RORO & expédition</li>
+        <li>Livraison de tous les documents</li>
+        <li>Vous récupérez votre voiture au port</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="inventory">
+    <div class="container">
+      <h2 style="text-align:center;margin-bottom:2rem;">Select your car</h2>
+      <div class="grid inventory">
+        <div class="card inv-card"><img src="toyota-corolla.jpg" alt="Toyota Corolla"/><div class="card-body"><h3>Corolla Axio 2023</h3><p>30 000 km · Prix sur demande</p></div></div>
+        <div class="card inv-card"><img src="toyota-prado.jpg" alt="Land Cruiser Prado"/><div class="card-body"><h3>Prado 2024</h3><p>20 000 km · Prix sur demande</p></div></div>
+        <div class="card inv-card"><img src="toyota-hilux.jpg" alt="Hilux Revo"/><div class="card-body"><h3>Hilux Revo 2025</h3><p>6 000 km · Prix sur demande</p></div></div>
+      </div>
+      <p style="text-align:center;margin-top:1rem;font-size:.9rem;">Your car is not on here? Send us details of the car.</p>
+    </div>
+  </section>
+
+  <section id="faqs">
+    <div class="container">
+      <h2 style="text-align:center;margin-bottom:2rem;">FAQ</h2>
+      <details><summary>Combien de temps prend la livraison ?</summary><p>Environ 5–7 semaines selon l'itinéraire.</p></details>
+      <details><summary>Quelles méthodes de paiement acceptez-vous ?</summary><p>Virement bancaire, lettre de crédit ou Escrow.</p></details>
+      <details><summary>Puis-je assurer le transport ?</summary><p>Oui, assurance tous-risques disponible.</p></details>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2 style="text-align:center;margin-bottom:2rem;">Contactez-nous</h2>
+      <form action="mailto:goodmoodhub.store@gmail.com" method="POST" enctype="text/plain">
+        <input type="text" name="Nom" placeholder="Nom" required>
+        <input type="email" name="Email" placeholder="Email" required>
+        <textarea name="Message" rows="4" placeholder="Votre message…" required></textarea>
+        <button type="submit" class="btn">Envoyer</button>
+      </form>
+      <a href="https://wa.me/213797386255" class="btn" style="margin-top:1rem;"><i class="fab fa-whatsapp"></i> Chat WhatsApp</a>
+    </div>
+  </section>
+
+  <footer>
+    <a href="https://wa.me/213797386255"><i class="fab fa-whatsapp"></i> +213 797 38 62 55</a>
+    <a href="mailto:goodmoodhub.store@gmail.com"><i class="fas fa-envelope"></i> goodmoodhub.store@gmail.com</a>
+    <div>© 2025 Autoimports · Tous droits réservés</div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.body.classList.toggle('open');
+    }
+    function switchLang(lang) {
+      // Placeholder for language switch logic
+    }
+  </script>
+</body>
+</html>
