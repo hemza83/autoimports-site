@@ -3,35 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Autoimports | Import car broker</title>
+  <title>Autoimports | Courtier import auto</title>
+  <!-- Google Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-yY9n+4Px0w0cV+x1JbfSfrWt4F72vpEBWSwR9E+TZY4pP9z04IoxJUzQ7yDLhp5P3wRA1M7ythMZ1m8UZOiOMA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
-    :root{
-      --primary:#0A1F44;--accent:#2EA7A9;--highlight:#D71920;--bg:#F5F7FA;--text:#333;--radius:8px;
-    }
+    :root{--primary:#0A1F44;--accent:#2EA7A9;--highlight:#D71920;--bg:#F5F7FA;--text:#333;--radius:8px;}
     *{margin:0;padding:0;box-sizing:border-box;}
     body{font-family:'Open Sans',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;scroll-behavior:smooth;}
     h1,h2,h3{font-family:'Poppins',sans-serif;}
-    header{background:var(--primary);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;position:sticky;top:0;z-index:1000;}
-    .logo{font-size:1.6rem;font-weight:600;}
+    /* Header */
+    header{background:var(--primary);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;position:sticky;top:0;z-index:1000;}
+    .logo{font-size:1.4rem;font-weight:600;}
     nav ul{list-style:none;display:flex;gap:1rem;}
     nav a{color:#fff;text-decoration:none;font-weight:500;transition:opacity .2s;}
     nav a:hover{opacity:.7;}
-    #lang-select{margin-left:1rem;border:none;background:#fff;color:var(--primary);padding:.3rem .5rem;border-radius:4px;font-weight:600;cursor:pointer;}
+    #lang-select{border:none;background:#fff;color:var(--primary);padding:.25rem .5rem;border-radius:4px;font-weight:600;cursor:pointer;}
+    /* Burger */
+    #burger{display:none;width:24px;height:18px;position:relative;cursor:pointer;}
+    #burger span{background:#fff;height:3px;width:100%;position:absolute;left:0;transition:.3s;}
+    #burger span:nth-child(1){top:0;}#burger span:nth-child(2){top:7px;}#burger span:nth-child(3){top:14px;}
+    @media(max-width:700px){nav ul{display:none;}#burger{display:block;}}
+    .open nav ul{display:flex;flex-direction:column;gap:.75rem;position:absolute;top:60px;left:0;width:100%;background:var(--primary);padding:1rem;}
     /* Hero */
     #hero{height:80vh;min-height:480px;background:url('hero.jpg') center/cover no-repeat;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;}
     #hero::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45);} 
-    #hero .content{position:relative;z-index:1;padding:0 1rem;max-width:700px;}
+    #hero .content{position:relative;z-index:1;padding:0 1rem;max-width:720px;}
     #hero h1{font-size:2.6rem;margin-bottom:1rem;}
     #hero p{font-size:1.1rem;margin-bottom:2rem;}
     .btn{background:var(--accent);color:#fff;padding:.75rem 1.5rem;border:none;border-radius:var(--radius);cursor:pointer;font-weight:600;text-decoration:none;display:inline-block;}
     .btn:hover{background:var(--highlight);}   
-    section{padding:3.5rem 1.5rem;}
+    /* Sections */
+    section{padding:3.5rem 1.25rem;scroll-margin-top:70px;}
     .container{max-width:1200px;margin:0 auto;}
     .grid{display:grid;gap:2rem;}
     .two-col{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
     /* Cards */
-    .card{background:#fff;border:1px solid #e0e4ea;border-radius:var(--radius);box-shadow:0 2px 4px rgba(0,0,0,.05);padding:1.5rem;}
+    .card{background:#fff;border:1px solid #e0e4ea;border-radius:var(--radius);box-shadow:0 2px 4px rgba(0,0,0,.05);padding:1.25rem;}
     .card h3{margin-bottom:.5rem;color:var(--primary);}  
     /* Inventory */
     .inventory{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));}
@@ -47,15 +55,11 @@
     /* Form */
     form{display:flex;flex-direction:column;gap:1rem;max-width:500px;margin:0 auto;}
     input,textarea{padding:.75rem;border:1px solid #ccd1d9;border-radius:var(--radius);font-size:1rem;}
-    footer{background:var(--primary);color:#fff;text-align:center;padding:1rem;font-size:.9rem;}
-    footer a{color:#fff;text-decoration:none;font-weight:500;}
-    /* Responsive nav */
-    @media(max-width:700px){nav ul{display:none;}#burger{display:block;cursor:pointer;}}
-    #burger{display:none;width:25px;height:18px;position:relative;}
-    #burger span{background:#fff;height:3px;width:100%;position:absolute;left:0;transition:.3s;}
-    #burger span:nth-child(1){top:0;}#burger span:nth-child(2){top:7px;}#burger span:nth-child(3){top:14px;}
-    .open nav ul{display:flex;flex-direction:column;gap:0.7rem;position:absolute;top:60px;left:0;width:100%;background:var(--primary);padding:1rem;}
-    @media(max-width:600px){#hero h1{font-size:2rem;}}
+    /* Footer */
+    footer{background:var(--primary);color:#fff;text-align:center;padding:1rem;font-size:.9rem;display:flex;flex-direction:column;gap:.5rem;align-items:center;}
+    footer a{color:#fff;text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.4rem;}
+    footer i{font-size:1rem;}
+    @media(max-width:600px){#hero h1{font-size:2.2rem;}}
   </style>
 </head>
 <body>
@@ -93,42 +97,4 @@
       <h2 style="text-align:center;margin-bottom:2rem;" data-i18n="services-title">Nos services</h2>
       <div class="grid two-col">
         <div class="card"><h3 data-i18n="service1-title">Vehicle Sourcing</h3><p data-i18n="service1-desc">Nous trouvons la meilleure qualité directement à la source.</p></div>
-        <div class="card"><h3 data-i18n="service2-title">Pre‑Purchase Inspection</h3><p data-i18n="service2-desc">Rapport indépendant 150 points avec photos &amp; scan OBD.</p></div>
-        <div class="card"><h3 data-i18n="service3-title">Shipping Logistics</h3><p data-i18n="service3-desc">RORO ou conteneur, nous réservons les meilleures traversées.</p></div>
-        <div class="card"><h3 data-i18n="service4-title">Marine Insurance</h3><p data-i18n="service4-desc">Couverture tous‑risques jusqu’à la valeur CIF.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- How it works -->
-  <section id="how" style="background:#fff;">
-    <div class="container">
-      <h2 style="text-align:center;margin-bottom:2rem;" data-i18n="how-title">Comment ça marche ?</h2>
-      <ol class="steps">
-        <li data-i18n="step1">Demande de devis → Proposition de véhicules</li>
-        <li data-i18n="step2">Inspection &amp; confirmation de prix</li>
-        <li data-i18n="step3">Paiement</li>
-        <li data-i18n="step4">Réservation RORO &amp; expédition</li>
-        <li data-i18n="step5">Livraison de tous les documents</li>
-        <li data-i18n="step6">Vous récupérez votre voiture au port</li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- Inventory -->
-  <section id="inventory">
-    <div class="container">
-      <h2 style="text-align:center;margin-bottom:2rem;" data-i18n="inventory-heading">Choisissez votre voiture</h2>
-      <div class="grid inventory">
-        <div class="card inv-card">
-          <img src="toyota-corolla.jpg" alt="Toyota Corolla Axio" />
-          <div class="card-body">
-            <h3>Toyota Corolla Axio 2023</h3>
-            <p data-i18n="inv1-detail">30 000 km · Prix → Sur demande</p>
-          </div>
-        </div>
-        <div class="card inv-card">
-          <img src="toyota-prado.jpg" alt="Toyota Prado" />
-          <div class="card-body">
-            <h3>Land Cruiser Prado 2024</h3>
-            <p data-i18n
+        <div class="card"><h3 data-i18n="service2-title">Pre‑Purchase Inspection</h3><p data-i18n
