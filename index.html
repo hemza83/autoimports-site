@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Autoimports | Courtier import auto</title>
   <!-- Google Fonts & Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
   <!-- GLightbox CSS -->
@@ -98,7 +98,11 @@
       box-shadow:0 2px 4px rgba(0,0,0,.05); overflow:hidden;
     }
     .inv-card img {
-      width:100%; height:180px; object-fit:cover;
+      width:100%;
+      height:auto;
+      max-height:200px;
+      object-fit:contain;
+      display:block;
     }
     .inv-card .card-body { padding:1rem; }
 
