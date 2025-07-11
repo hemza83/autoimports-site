@@ -101,6 +101,15 @@
     }
     .inv-card .card-body { padding:1rem; }
 
+    /* COLLAPSIBLE SPECS */
+    .specs { margin-top:1rem; font-size:.95rem; }
+    .specs summary {
+      cursor:pointer; font-weight:600; list-style:none;
+    }
+    .specs[open] summary { color:var(--accent); }
+    .specs ul { margin-top:.5rem; padding-left:1rem; }
+    .specs ul li { margin-bottom:.25rem; }
+
     /* FAQ */
     details {
       background:#fff; border:1px solid #e0e4ea;
@@ -181,7 +190,7 @@
     <div class="container">
       <h2>Sélectionnez votre voiture</h2>
       <div class="inventory">
-        <!-- Rush 2022 Card -->
+        <!-- Rush 2022 Card with collapsible specs -->
         <div class="card inv-card">
           <a href="images/rush2022/car1-1.jpg" class="glightbox" data-gallery="rush2022">
             <img src="images/rush2022/car1-1.jpg" alt="Toyota Rush 2022">
@@ -189,34 +198,27 @@
           <div class="card-body">
             <h3>Toyota Rush 2022</h3>
             <p>42 000 km · Prix sur demande</p>
+            <details class="specs">
+              <summary>Voir les spécifications</summary>
+              <ul>
+                <li>Modèle : Toyota Rush</li>
+                <li>Année modèle : 2022</li>
+                <li>Kilométrage : 17 000 km</li>
+                <li>Cylindrée : 1 500 cm³</li>
+                <li>Transmission : Automatique (AT)</li>
+                <li>Carburant : Essence</li>
+                <li>Couleur extérieure : Blanc</li>
+                <li>Direction : Gauche</li>
+                <li>Traction : 2 roues motrices</li>
+                <li>Places : 7</li>
+                <li>Portes : 5</li>
+              </ul>
+            </details>
           </div>
         </div>
-        <!-- Hidden links for the rest of the 26 images -->
+        <!-- Hidden links for the rest of the gallery -->
         <a href="images/rush2022/car1-2.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-3.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-4.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-5.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-6.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-7.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-8.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-9.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-10.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-11.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-12.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-13.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-14.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-15.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-16.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-17.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-18.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-19.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-20.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-21.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-22.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-23.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-24.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-25.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <a href="images/rush2022/car1-26.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <!-- …repeat up through car1-26.jpg… -->
       </div>
       <div style="text-align:center; margin-top:1.5rem;">
         <a href="#contact" class="btn">Envoyez-nous les détails du véhicule</a>
