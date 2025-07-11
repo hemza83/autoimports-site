@@ -12,18 +12,19 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Open Sans',Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; scroll-behavior:smooth; }
     h1,h2,h3 { font-family:'Poppins',sans-serif; }
-    header { background:var(--primary); color:#fff; display:flex; justify-content:space-between; align-items:center; padding:1rem;	position:sticky; top:0; z-index:1000; }
+    header { background:var(--primary); color:#fff; display:flex; justify-content:space-between; align-items:center; padding:1rem; position:sticky; top:0; z-index:1000; }
     .logo { font-size:1.4rem; font-weight:600; }
     nav { position:relative; }
     nav ul { list-style:none; display:flex; gap:1rem; }
     nav a { color:#fff; text-decoration:none; font-weight:500; }
-    /* Burger Button */
+    /* Burger */
     #burger { display:none; flex-direction:column; justify-content:space-between; width:24px; height:18px; cursor:pointer; }
     #burger span { display:block; height:2px; background:#fff; border-radius:1px; }
     @media(max-width:768px) {
-      nav ul { display:none; flex-direction:column; background:var(--primary); position:absolute; top:100%; left:0; width:100%; }
+      nav ul { display:none; flex-direction:column; background:var(--primary); position:absolute; top:100%; left:0; width:100%; z-index:1001; }
       #burger { display:flex; }
     }
+    .open nav ul { display:flex; }
     /* Hero */
     #hero { height:60vh; min-height:300px; background:url('hero.jpg') center/cover no-repeat; position:relative; display:flex; align-items:center; justify-content:center; text-align:center; color:#fff; }
     #hero::before { content:''; position:absolute; inset:0; background:rgba(0,0,0,.45); }
@@ -32,6 +33,7 @@
     #hero p { font-size:1rem; margin-bottom:1.5rem; }
     .btn { background:var(--accent); color:#fff; padding:.5rem 1rem; border:none; border-radius:var(--radius); cursor:pointer; font-weight:600; text-decoration:none; }
     .btn:hover { background:var(--highlight); }
+    /* Sections */
     section { padding:2rem 1rem; }
     .container { max-width:1000px; margin:0 auto; }
     .grid { display:grid; gap:1rem; }
@@ -52,6 +54,8 @@
     details p { padding:.75rem; background:#fafafa; border-radius:0 0 var(--radius) var(--radius); }
     form { display:flex; flex-direction:column; gap:.75rem; }
     input,textarea { padding:.5rem; border:1px solid #ccd1d9; border-radius:var(--radius); width:100%; }
+    /* Contact buttons full width */
+    #contact .btn { display:block; width:100%; margin-top:.5rem; text-align:center; }
     footer { background:var(--primary); color:#fff; text-align:center; padding:1rem; font-size:.8rem; }
   </style>
 </head>
@@ -112,7 +116,7 @@
         <div class="card inv-card"><img src="toyota-prado.jpg" alt="Land Cruiser Prado"/><div class="card-body"><h3>Prado 2024</h3><p>20 000 km · Prix sur demande</p></div></div>
         <div class="card inv-card"><img src="toyota-hilux.jpg" alt="Hilux Revo"/><div class="card-body"><h3>Hilux Revo 2025</h3><p>6 000 km · Prix sur demande</p></div></div>
       </div>
-      <p style="text-align:center;margin-top:1rem;font-size:.9rem;">Votre voiture n'est pas ici ? <a href="#contact">Envoyez-nous les détails du véhicule.</a></p>
+      <p style="text-align:center; margin-top:1rem; font-size:.9rem;">Votre voiture n'est pas ici ? <a href="#contact">Envoyez-nous les détails du véhicule.</a></p>
     </div>
   </section>
 
@@ -137,7 +141,7 @@
         <textarea name="Message" rows="4" placeholder="Votre message…" required></textarea>
         <button type="submit" class="btn">Envoyer</button>
       </form>
-      <a href="https://wa.me/213797386255" class="btn" style="margin-top:1rem;"><i class="fab fa-whatsapp"></i> Chat WhatsApp</a>
+      <a href="https://wa.me/213797386255" class="btn"><i class="fab fa-whatsapp"></i> Chat WhatsApp</a>
     </div>
   </section>
 
@@ -147,6 +151,8 @@
 
   <script>
     function toggleMenu(){ document.body.classList.toggle('open'); }
+    // Close menu on nav link click
+    document.querySelectorAll('nav a').forEach(link => link.addEventListener('click', () => document.body.classList.remove('open')));
   </script>
 </body>
 </html>
