@@ -92,19 +92,27 @@
     }
 
     /* INVENTAIRE */
-    .inventory { display:grid; gap:2rem; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); }
+    .inventory { display:grid; gap:2rem; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
     .inv-card {
       background:#fff; border:1px solid #e0e4ea; border-radius:var(--radius);
-      box-shadow:0 2px 4px rgba(0,0,0,.05); overflow:hidden;
+      box-shadow:0 2px 4px rgba(0,0,0,.05); padding:1rem; overflow:hidden;
     }
-    .inv-card img {
-      width:100%;
-      height:auto;
-      max-height:200px;
-      object-fit:contain;
+    .inv-card .card-top {
+      display:flex; align-items:flex-start; gap:1rem;
+    }
+    .inv-card .card-text { flex:1; }
+    .inv-card .card-text h3 { margin-bottom:1rem; }
+    .inv-card .card-main-image img {
+      max-width:200px; width:100%; height:auto; object-fit:contain; border-radius:4px;
       display:block;
     }
-    .inv-card .card-body { padding:1rem; }
+    .card-thumbs {
+      display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1rem;
+    }
+    .card-thumbs img {
+      width:60px; height:60px; object-fit:cover; border-radius:4px; cursor:pointer;
+      display:block;
+    }
 
     /* COLLAPSIBLE SPECS */
     .specs { margin-top:1rem; font-size:.95rem; }
@@ -193,32 +201,42 @@
     <div class="container">
       <h2>Sélectionnez votre voiture</h2>
       <div class="inventory">
-        <!-- Rush 2022 Card with collapsible specs -->
+
+        <!-- Toyota Rush 2022 -->
         <div class="card inv-card">
-          <a href="images/rush2022/car1-1.jpg" class="glightbox" data-gallery="rush2022">
-            <img src="images/rush2022/car1-1.jpg" alt="Toyota Rush 2022">
-          </a>
-          <div class="card-body">
-            <h3>Toyota Rush 2022</h3>
-            <details class="specs">
-              <summary>Voir les spécifications</summary>
-              <ul>
-                <li>Modèle : Toyota Rush</li>
-                <li>Année modèle : 2022</li>
-                <li>Kilométrage : 17 000 km</li>
-                <li>Cylindrée : 1 500 cm³</li>
-                <li>Transmission : Automatique (AT)</li>
-                <li>Carburant : Essence</li>
-                <li>Couleur extérieure : Blanc</li>
-                <li>Direction : Gauche</li>
-                <li>Traction : 2 roues motrices</li>
-                <li>Places : 7</li>
-                <li>Portes : 5</li>
-              </ul>
-            </details>
+          <div class="card-top">
+            <div class="card-text">
+              <h3>Toyota Rush 2022</h3>
+              <details class="specs">
+                <summary>Voir les spécifications</summary>
+                <ul>
+                  <li>Modèle : Toyota Rush</li>
+                  <li>Année modèle : 2022</li>
+                  <li>Kilométrage : 17 000 km</li>
+                  <li>Cylindrée : 1 500 cm³</li>
+                  <li>Transmission : Automatique (AT)</li>
+                  <li>Carburant : Essence</li>
+                  <li>Couleur extérieure : Blanc</li>
+                  <li>Direction : Gauche</li>
+                  <li>Traction : 2 roues motrices</li>
+                  <li>Places : 7</li>
+                  <li>Portes : 5</li>
+                </ul>
+              </details>
+            </div>
+
+            <div class="card-main-image">
+              <a href="images/rush2022/car1-01.jpg" class="glightbox" data-gallery="rush2022">
+                <img src="images/rush2022/car1-01.jpg" alt="Toyota Rush 2022">
+              </a>
+            </div>
           </div>
+
+          <div class="card-thumbs"></div>
         </div>
+
       </div>
+
       <div style="text-align:center; margin-top:1.5rem;">
         <a href="#contact" class="btn">Envoyez-nous les détails du véhicule</a>
       </div>
@@ -256,22 +274,26 @@
     <div>© 2025 Autoimports · Tous droits réservés</div>
   </footer>
 
-  <!-- GLightbox JS & dynamic gallery injection -->
+  <!-- GLightbox JS & dynamic thumbnail injection -->
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script>
     function toggleMenu() {
       document.body.classList.toggle('open');
     }
     document.addEventListener('DOMContentLoaded', () => {
-      const rushCard = document.querySelector('#inventory .card.inv-card');
-      for (let i = 2; i <= 26; i++) {
+      const thumbs = document.querySelector('.card-thumbs');
+      for (let i = 1; i <= 26; i++) {
         const num = String(i).padStart(2, '0');
         const a = document.createElement('a');
         a.href = `images/rush2022/car1-${num}.jpg`;
         a.className = 'glightbox';
         a.setAttribute('data-gallery','rush2022');
-        a.style.display = 'none';
-        rushCard.appendChild(a);
+        const img = document.createElement('img');
+        img.src   = a.href;
+        img.alt   = 'Rush 2022';
+        img.className = 'thumb';
+        a.appendChild(img);
+        thumbs.appendChild(a);
       }
       GLightbox({ selector: '.glightbox' });
     });
