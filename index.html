@@ -216,9 +216,6 @@
             </details>
           </div>
         </div>
-        <!-- Hidden links for the rest of the gallery -->
-        <a href="images/rush2022/car1-2.jpg" class="glightbox" data-gallery="rush2022"></a>
-        <!-- …repeat up through car1-26.jpg… -->
       </div>
       <div style="text-align:center; margin-top:1.5rem;">
         <a href="#contact" class="btn">Envoyez-nous les détails du véhicule</a>
@@ -242,28 +239,39 @@
     <div class="container">
       <h2>Contactez-nous</h2>
       <form action="mailto:goodmoodhub.store@gmail.com" method="POST" enctype="text/plain">
-        <input type="text" name="Nom" placeholder="Nom" required>
-        <input type="email" name="Email" placeholder="Email" required>
-        <textarea name="Message" rows="4" placeholder="Votre message …" required></textarea>
-        <button type="submit" class="btn">Envoyer</button>
-      </form>
-      <a href="https://wa.me/213797386255" class="btn" style="margin-top:1rem;">
-        <i class="fab fa-whatsapp"></i> Chat WhatsApp
-      </a>
-    </div>
-  </section>
+        <input type="text" name="Nom" placeholder="Nom" required>  
+        <input type="email" name="Email" placeholder="Email" required>  
+        <textarea name="Message" rows="4" placeholder="Votre message …" required></textarea>  
+        <button type="submit" class="btn">Envoyer</button>  
+      </form>  
+      <a href="https://wa.me/213797386255" class="btn" style="margin-top:1rem;">  
+        <i class="fab fa-whatsapp"></i> Chat WhatsApp  
+      </a>  
+    </div>  
+  </section>  
 
-  <footer>
-    <div>© 2025 Autoimports · Tous droits réservés</div>
-  </footer>
+  <footer>  
+    <div>© 2025 Autoimports · Tous droits réservés</div>  
+  </footer>  
 
-  <!-- GLightbox JS -->
-  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-  <script>
-    function toggleMenu() {
-      document.body.classList.toggle('open');
-    }
-    const lightbox = GLightbox({ selector: '.glightbox' });
-  </script>
-</body>
+  <!-- GLightbox JS -->  
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>  
+  <script>  
+    function toggleMenu() {  
+      document.body.classList.toggle('open');  
+    }  
+    document.addEventListener('DOMContentLoaded', () => {  
+      const gallery = document.querySelector('#inventory .inventory');  
+      for (let i = 2; i <= 26; i++) {  
+        const a = document.createElement('a');  
+        a.href = `images/rush2022/car1-${i}.jpg`;  
+        a.className = 'glightbox';  
+        a.setAttribute('data-gallery', 'rush2022');  
+        a.style.display = 'none';  
+        gallery.appendChild(a);  
+      }  
+      GLightbox({ selector: '.glightbox' });  
+    });  
+  </script>  
+</body>  
 </html>
