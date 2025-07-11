@@ -6,7 +6,11 @@
   <title>Autoimports | Courtier import auto</title>
   <!-- Google Fonts & Font Awesome -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
+
+  <!-- GLightbox CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"/>
+
   <style>
     :root {
       --primary: #0A1F44;
@@ -16,110 +20,63 @@
       --text:    #333;
       --radius:  8px;
     }
-    * {margin:0; padding:0; box-sizing:border-box;}
-    body {
-      font-family:'Open Sans',Arial,sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.6;
-      scroll-behavior:smooth;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Open Sans',Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; scroll-behavior:smooth; }
     h1,h2,h3 { font-family:'Poppins',sans-serif; }
     a { text-decoration:none; color:inherit; }
     .container { width:90%; max-width:1000px; margin:0 auto; }
 
     /* HEADER */
     header {
-      background:var(--primary);
-      color:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:1rem 1.5rem;
-      position:sticky; top:0; z-index:1000;
+      background:var(--primary); color:#fff;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:1rem 1.5rem; position:sticky; top:0; z-index:1000;
     }
     .logo { font-size:1.6rem; font-weight:600; }
-    nav ul {
-      list-style:none;
-      display:flex;
-      gap:1rem;
-    }
-    nav a {
-      color:#fff;
-      font-weight:500;
-      transition:opacity .2s;
-    }
+    nav ul { list-style:none; display:flex; gap:1rem; }
+    nav a { color:#fff; font-weight:500; transition:opacity .2s; }
     nav a:hover { opacity:.7; }
-    #burger {
-      display:none;
-      width:24px; height:18px;
-      position:relative;
-      cursor:pointer;
-    }
-    #burger span {
-      background:#fff;
-      height:3px;
-      width:100%;
-      position:absolute;
-      left:0;
-      transition:.3s;
-    }
+    #burger { display:none; width:24px; height:18px; position:relative; cursor:pointer; }
+    #burger span { background:#fff; height:3px; width:100%; position:absolute; left:0; transition:.3s; }
     #burger span:nth-child(1){ top:0; }
     #burger span:nth-child(2){ top:7px; }
     #burger span:nth-child(3){ top:14px; }
-    @media(max-width:700px){
+    @media(max-width:700px) {
       nav ul { display:none; }
       #burger { display:block; }
     }
     .open nav ul {
-      display:flex;
-      flex-direction:column;
-      gap:1rem;
-      position:absolute;
-      top:60px; left:0;
-      width:100%;
-      background:var(--primary);
-      padding:1rem;
+      display:flex; flex-direction:column; gap:1rem;
+      position:absolute; top:60px; left:0; width:100%;
+      background:var(--primary); padding:1rem;
     }
 
     /* HERO */
     #hero {
       height:80vh; min-height:480px;
       background:url('hero.jpg') center/cover no-repeat;
-      position:relative;
-      display:flex; align-items:center; justify-content:center;
+      position:relative; display:flex; align-items:center; justify-content:center;
       text-align:center; color:#fff;
     }
     #hero::before {
-      content:""; position:absolute; inset:0;
-      background:rgba(0,0,0,.45);
+      content:""; position:absolute; inset:0; background:rgba(0,0,0,.45);
     }
-    #hero .content {
-      position:relative; z-index:1;
-      padding:0 1rem; max-width:720px;
-    }
+    #hero .content { position:relative; z-index:1; padding:0 1rem; max-width:720px; }
     #hero h1 { font-size:2.6rem; margin-bottom:1rem; }
     #hero p  { font-size:1.1rem; margin-bottom:2rem; }
     .btn {
-      background:var(--accent);
-      color:#fff;
-      padding:.75rem 1.5rem;
-      border:none;
-      border-radius:var(--radius);
-      cursor:pointer;
-      font-weight:600;
-      display:inline-block;
+      background:var(--accent); color:#fff;
+      padding:.75rem 1.5rem; border:none; border-radius:var(--radius);
+      cursor:pointer; font-weight:600; display:inline-block;
     }
     .btn:hover { background:var(--highlight); }
 
-    /* SECTIONS */
+    /* SERVICES */
     section { padding:3.5rem 1.5rem; scroll-margin-top:80px; }
     .two-col { display:grid; gap:2rem; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
     .card {
-      background:#fff;
-      border:1px solid #e0e4ea;
-      border-radius:var(--radius);
-      box-shadow:0 2px 4px rgba(0,0,0,.05);
+      background:#fff; border:1px solid #e0e4ea;
+      border-radius:var(--radius); box-shadow:0 2px 4px rgba(0,0,0,.05);
       padding:1.25rem;
     }
     .card h3 { margin-bottom:.5rem; color:var(--primary); }
@@ -127,68 +84,49 @@
     /* PROCESSUS */
     .steps { counter-reset:step; }
     .steps li {
-      list-style:none;
-      position:relative;
-      padding-left:2.5rem;
-      margin-bottom:1rem;
+      list-style:none; position:relative; padding-left:2.5rem; margin-bottom:1rem;
     }
     .steps li::before {
-      counter-increment:step;
-      content:counter(step);
+      counter-increment:step; content:counter(step);
       position:absolute; left:0; top:0;
       background:var(--accent); color:#fff;
-      width:2rem; height:2rem;
-      border-radius:50%;
-      display:flex; align-items:center; justify-content:center;
-      font-weight:600;
+      width:2rem; height:2rem; border-radius:50%;
+      display:flex; align-items:center; justify-content:center; font-weight:600;
     }
 
     /* INVENTAIRE */
     .inventory { display:grid; gap:2rem; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); }
     .inv-card img {
-      width:100%;
-      border-top-left-radius:var(--radius);
-      border-top-right-radius:var(--radius);
+      width:100%; border-top-left-radius:var(--radius); border-top-right-radius:var(--radius);
     }
     .inv-card .card-body { padding:1rem; }
 
     /* FAQ */
     details {
-      background:#fff;
-      border:1px solid #e0e4ea;
-      border-radius:var(--radius);
-      padding:1rem;
-      margin-bottom:1rem;
-      cursor:pointer;
+      background:#fff; border:1px solid #e0e4ea;
+      border-radius:var(--radius); padding:1rem; margin-bottom:1rem; cursor:pointer;
     }
     summary { font-weight:600; }
 
     /* CONTACT */
     form {
-      display:flex; flex-direction:column; gap:1rem;
-      max-width:500px; margin:0 auto;
+      display:flex; flex-direction:column; gap:1rem; max-width:500px; margin:0 auto;
     }
-    input, textarea {
-      padding:.75rem;
-      border:1px solid #ccd1d9;
-      border-radius:var(--radius);
-      font-size:1rem;
-      width:100%;
+    input,textarea {
+      padding:.75rem; border:1px solid #ccd1d9; border-radius:var(--radius);
+      font-size:1rem; width:100%;
     }
     #contact form .btn { margin-top:.5rem; }
     #contact > a.btn { margin-top:1rem; }
 
     /* FOOTER */
     footer {
-      background:var(--primary);
-      color:#fff;
-      text-align:center;
-      padding:1.5rem;
-      font-size:.9rem;
-      display:flex; flex-direction:column; gap:.5rem; align-items:center;
+      background:var(--primary); color:#fff; text-align:center;
+      padding:1.5rem; font-size:.9rem;
     }
     footer div { color:#aaa; }
-    @media(max-width:600px){ #hero h1{font-size:2.2rem;} }
+
+    @media(max-width:600px){ #hero h1{ font-size:2.2rem;} }
   </style>
 </head>
 <body>
@@ -243,18 +181,42 @@
     <div class="container">
       <h2>Sélectionnez votre voiture</h2>
       <div class="inventory">
+        <!-- Rush 2022 Card -->
         <div class="card inv-card">
-          <img src="toyota-corolla.jpg" alt="Corolla Axio 2023">
-          <div class="card-body"><h3>Corolla Axio 2023</h3><p>30 000 km · Prix sur demande</p></div>
+          <a href="images/rush2022/car1-1.jpg" class="glightbox" data-gallery="rush2022">
+            <img src="images/rush2022/car1-1.jpg" alt="Toyota Rush 2022">
+          </a>
+          <div class="card-body">
+            <h3>Toyota Rush 2022</h3>
+            <p>42 000 km · Prix sur demande</p>
+          </div>
         </div>
-        <div class="card inv-card">
-          <img src="toyota-prado.jpg" alt="Prado 2024">
-          <div class="card-body"><h3>Prado 2024</h3><p>20 000 km · Prix sur demande</p></div>
-        </div>
-        <div class="card inv-card">
-          <img src="toyota-hilux.jpg" alt="Hilux Revo 2025">
-          <div class="card-body"><h3>Hilux Revo 2025</h3><p>6 000 km · Prix sur demande</p></div>
-        </div>
+        <!-- Hidden links for the rest of the 26 images -->
+        <a href="images/rush2022/car1-2.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-3.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-4.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-5.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-6.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-7.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-8.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-9.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-10.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-11.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-12.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-13.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-14.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-15.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-16.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-17.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-18.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-19.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-20.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-21.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-22.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-23.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-24.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-25.jpg" class="glightbox" data-gallery="rush2022"></a>
+        <a href="images/rush2022/car1-26.jpg" class="glightbox" data-gallery="rush2022"></a>
       </div>
       <div style="text-align:center; margin-top:1.5rem;">
         <a href="#contact" class="btn">Envoyez-nous les détails du véhicule</a>
@@ -293,10 +255,13 @@
     <div>© 2025 Autoimports · Tous droits réservés</div>
   </footer>
 
+  <!-- GLightbox JS -->
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script>
     function toggleMenu() {
       document.body.classList.toggle('open');
     }
+    const lightbox = GLightbox({ selector: '.glightbox' });
   </script>
 </body>
 </html>
