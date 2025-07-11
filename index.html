@@ -8,48 +8,57 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
-    :root{--primary:#0A1F44;--accent:#2EA7A9;--highlight:#D71920;--bg:#F5F7FA;--text:#333;--radius:8px;}
-    *{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:'Open Sans',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;scroll-behavior:smooth;}
-    h1,h2,h3{font-family:'Poppins',sans-serif;}
-    header{background:var(--primary);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;position:sticky;top:0;z-index:1000;}
-    .logo{font-size:1.6rem;font-weight:600;}
-    nav ul{list-style:none;display:flex;gap:1rem;}
-    nav a{color:#fff;text-decoration:none;font-weight:500;transition:opacity .2s;}
-    nav a:hover{opacity:.7;}
+    :root { --primary:#0A1F44;--accent:#2EA7A9;--highlight:#D71920;--bg:#F5F7FA;--text:#333;--radius:8px; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Open Sans',Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; scroll-behavior:smooth; }
+    h1,h2,h3 { font-family:'Poppins',sans-serif; }
+    header { background:var(--primary); color:#fff; display:flex; justify-content:space-between; align-items:center; padding:1rem;	position:sticky; top:0; z-index:1000; }
+    .logo { font-size:1.4rem; font-weight:600; }
+    nav { position:relative; }
+    nav ul { list-style:none; display:flex; gap:1rem; }
+    nav a { color:#fff; text-decoration:none; font-weight:500; }
+    /* Burger Button */
+    #burger { display:none; flex-direction:column; justify-content:space-between; width:24px; height:18px; cursor:pointer; }
+    #burger span { display:block; height:2px; background:#fff; border-radius:1px; }
+    @media(max-width:768px) {
+      nav ul { display:none; flex-direction:column; background:var(--primary); position:absolute; top:100%; left:0; width:100%; }
+      #burger { display:flex; }
+    }
     /* Hero */
-    #hero{height:80vh;min-height:480px;background:url('hero.jpg') center/cover no-repeat;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;}
-    #hero::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45);} 
-    #hero .content{position:relative;z-index:1;padding:0 1rem;max-width:720px;}
-    #hero h1{font-size:2.6rem;margin-bottom:1rem;}    
-    #hero p{font-size:1.1rem;margin-bottom:2rem;}
-    .btn{background:var(--accent);color:#fff;padding:.75rem 1.5rem;border:none;border-radius:var(--radius);cursor:pointer;font-weight:600;text-decoration:none;display:inline-block;}
-    .btn:hover{background:var(--highlight);}    
-    section{padding:3.5rem 1.5rem;scroll-margin-top:80px;}
-    .container{max-width:1200px;margin:0 auto;}
-    .grid{display:grid;gap:2rem;}
-    .two-col{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
-    .card{background:#fff;border:1px solid #e0e4ea;border-radius:var(--radius);box-shadow:0 2px 4px rgba(0,0,0,.05);padding:1.25rem;}
-    .card h3{margin-bottom:.5rem;color:var(--primary);}    
-    .inventory{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));}
-    .inv-card img{width:100%;border-top-left-radius:var(--radius);border-top-right-radius:var(--radius);}    
-    .inv-card .card-body{padding:1rem;}
-    .steps{counter-reset:step;}    
-    .steps li{list-style:none;position:relative;padding-left:2.5rem;margin-bottom:1rem;}
-    .steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;background:var(--accent);color:#fff;width:2rem;height:2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;}
-    details{background:#fff;border:1px solid #e0e4ea;border-radius:var(--radius);padding:1rem;margin-bottom:1rem;cursor:pointer;}
-    summary{font-weight:600;}
-    form{display:flex;flex-direction:column;gap:1rem;max-width:500px;margin:0 auto;}
-    input,textarea{padding:.75rem;border:1px solid #ccd1d9;border-radius:var(--radius);font-size:1rem;width:100%;}
-    footer{background:var(--primary);color:#fff;text-align:center;padding:1.5rem;font-size:.9rem;display:flex;flex-direction:column;gap:.5rem;align-items:center;}
-    footer a{color:#fff;text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:.5rem;}
-    footer i{font-size:1rem;}
-    @media(max-width:600px){#hero h1{font-size:2.2rem;}}
+    #hero { height:60vh; min-height:300px; background:url('hero.jpg') center/cover no-repeat; position:relative; display:flex; align-items:center; justify-content:center; text-align:center; color:#fff; }
+    #hero::before { content:''; position:absolute; inset:0; background:rgba(0,0,0,.45); }
+    #hero .content { position:relative; z-index:1; padding:0 1rem; max-width:600px; }
+    #hero h1 { font-size:1.8rem; margin-bottom:.75rem; }
+    #hero p { font-size:1rem; margin-bottom:1.5rem; }
+    .btn { background:var(--accent); color:#fff; padding:.5rem 1rem; border:none; border-radius:var(--radius); cursor:pointer; font-weight:600; text-decoration:none; }
+    .btn:hover { background:var(--highlight); }
+    section { padding:2rem 1rem; }
+    .container { max-width:1000px; margin:0 auto; }
+    .grid { display:grid; gap:1rem; }
+    .two-col { grid-template-columns:1fr 1fr; }
+    @media(max-width:600px) { .two-col { grid-template-columns:1fr; } }
+    .card { background:#fff; border-radius:var(--radius); box-shadow:0 2px 4px rgba(0,0,0,.05); padding:1rem; }
+    .card h3 { margin-bottom:.5rem; color:var(--primary); font-size:1.1rem; }
+    .inventory { grid-template-columns:1fr 1fr 1fr; }
+    @media(max-width:800px) { .inventory { grid-template-columns:1fr 1fr; } }
+    @media(max-width:500px) { .inventory { grid-template-columns:1fr; } }
+    .inv-card img { width:100%; border-radius:var(--radius) var(--radius) 0 0; }
+    .inv-card .card-body { padding:.75rem; }
+    .steps { counter-reset:step; list-style:none; padding-left:0; }
+    .steps li { position:relative; padding-left:2rem; margin-bottom:.75rem; }
+    .steps li::before { counter-increment:step; content:counter(step); position:absolute; left:0; top:0; background:var(--accent); color:#fff; width:1.5rem; height:1.5rem; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1rem; }
+    details { margin-bottom:1rem; }
+    summary { background:#fff; padding:.75rem; border-radius:var(--radius); cursor:pointer; }
+    details p { padding:.75rem; background:#fafafa; border-radius:0 0 var(--radius) var(--radius); }
+    form { display:flex; flex-direction:column; gap:.75rem; }
+    input,textarea { padding:.5rem; border:1px solid #ccd1d9; border-radius:var(--radius); width:100%; }
+    footer { background:var(--primary); color:#fff; text-align:center; padding:1rem; font-size:.8rem; }
   </style>
 </head>
 <body>
   <header>
     <div class="logo">Autoimports</div>
+    <div id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
     <nav>
       <ul>
         <li><a href="#hero">Accueil</a></li>
@@ -61,7 +70,6 @@
     </nav>
   </header>
 
-  <!-- Hero -->
   <section id="hero">
     <div class="content">
       <h1>Importez votre auto de rêve sans stress</h1>
@@ -70,10 +78,9 @@
     </div>
   </section>
 
-  <!-- Services -->
   <section id="services">
     <div class="container">
-      <h2 style="text-align:center;margin-bottom:2rem;">Nos services</h2>
+      <h2 style="text-align:center;margin-bottom:1.5rem;">Nos services</h2>
       <div class="grid two-col">
         <div class="card"><h3>Approvisionnement de véhicules</h3><p>Nous trouvons la meilleure qualité directement à la source.</p></div>
         <div class="card"><h3>Inspection préalable à l'achat</h3><p>Rapport indépendant 150 points avec photos & scan OBD.</p></div>
@@ -83,10 +90,9 @@
     </div>
   </section>
 
-  <!-- How it works -->
   <section id="how">
     <div class="container">
-      <h2 style="text-align:center;margin-bottom:2rem;">Comment ça marche ?</h2>
+      <h2 style="text-align:center;margin-bottom:1.5rem;">Comment ça marche ?</h2>
       <ol class="steps">
         <li>Demande de devis → Proposition de véhicules</li>
         <li>Inspection & confirmation de prix</li>
@@ -98,10 +104,9 @@
     </div>
   </section>
 
-  <!-- Inventory -->
   <section id="inventory">
     <div class="container">
-      <h2 style="text-align:center;margin-bottom:2rem;">Select your car</h2>
+      <h2 style="text-align:center;margin-bottom:1.5rem;">Select your car</h2>
       <div class="grid inventory">
         <div class="card inv-card"><img src="toyota-corolla.jpg" alt="Toyota Corolla"/><div class="card-body"><h3>Corolla Axio 2023</h3><p>30 000 km · Prix sur demande</p></div></div>
         <div class="card inv-card"><img src="toyota-prado.jpg" alt="Land Cruiser Prado"/><div class="card-body"><h3>Prado 2024</h3><p>20 000 km · Prix sur demande</p></div></div>
@@ -111,10 +116,9 @@
     </div>
   </section>
 
-  <!-- FAQs -->
   <section id="faqs">
     <div class="container">
-      <h2 style="text-align:center;margin-bottom:2rem;">FAQ</h2>
+      <h2 style="text-align:center;margin-bottom:1.5rem;">FAQ</h2>
       <details><summary>Combien de temps prend la livraison ?</summary><p>Environ 5–7 semaines selon l'itinéraire.</p></details>
       <details><summary>Quelles méthodes de paiement acceptez-vous ?</summary><p>Virement bancaire, cash.</p></details>
       <details><summary>Vos véhicules sont-ils d'origine ?</summary><p>Oui, tous nos véhicules sont du pays où ils sont fabriqués.</p></details>
@@ -124,10 +128,9 @@
     </div>
   </section>
 
-  <!-- Contact -->
   <section id="contact">
     <div class="container">
-      <h2 style="text-align:center;margin-bottom:2rem;">Contactez-nous</h2>
+      <h2 style="text-align:center;margin-bottom:1.5rem;">Contactez-nous</h2>
       <form action="mailto:goodmoodhub.store@gmail.com" method="POST" enctype="text/plain">
         <input type="text" name="Nom" placeholder="Nom" required>
         <input type="email" name="Email" placeholder="Email" required>
@@ -138,7 +141,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <div>© 2025 Autoimports · Tous droits réservés</div>
   </footer>
