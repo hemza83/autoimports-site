@@ -1,160 +1,188 @@
 <!DOCTYPE html>
-<html lang="fr" dir="ltr">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Autoimports | Courtier import auto</title>
-  <!-- Google Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Autoimports</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <style>
-    :root { --primary:#0A1F44; --accent:#2EA7A9; --highlight:#D71920; --bg:#F5F7FA; --text:#333; --radius:8px; }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Open Sans',Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; scroll-behavior:smooth; }
-    h1,h2,h3 { font-family:'Poppins',sans-serif; }
+    :root {
+      --nav-bg: #0A1F44;
+      --accent: #2EA7A9;
+      --light: #F5F7FA;
+      --text: #333;
+    }
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body { font-family: 'Open Sans', sans-serif; color: var(--text); line-height:1.5; }
+    a { color: inherit; text-decoration:none; }
+    .container { width:90%; max-width:1000px; margin:0 auto; }
+    button.btn, a.btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: .75rem;
+      border-radius: .25rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    /* HEADER */
     header {
-      background:var(--primary);
-      color:#fff;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:1rem;
-      position:sticky;
-      top:0;
-      z-index:1000;
+      position: relative;
+      background: var(--nav-bg);
+      color: white;
+      padding: 1rem .5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    header.open nav ul { display:flex; }
-    .logo { font-size:1.4rem; font-weight:600; }
-    nav ul { list-style:none; display:flex; gap:1rem; }
-    nav a { color:#fff; text-decoration:none; font-weight:500; }
-    #burger { display:none; flex-direction:column; justify-content:space-between; width:24px; height:18px; cursor:pointer; }
-    #burger span { display:block; height:2px; background:#fff; border-radius:1px; }
-    /* Mobile menu */
-    @media(max-width:768px) {
-      nav ul {
-        display:none;
-        flex-direction:column;
-        background:var(--primary);
-        position:absolute;
-        top:calc(100% + 0.5rem);
-        left:0;
-        right:0;
-        z-index:1001;
-        padding:1rem;
-      }
-      #burger { display:flex; }
+    header .logo { font-size:1.5rem; font-weight: bold; }
+    header nav {
+      display: flex;
+      gap: 1.5rem;
     }
-    /* Hero */
+    header nav a { color: white; }
+
+    /* BURGER */
+    .burger {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* HERO */
     #hero {
-      height:60vh; min-height:300px;
-      background:url('hero.jpg') center/cover no-repeat;
-      position:relative;
-      display:flex; align-items:center; justify-content:center; text-align:center; color:#fff;
+      background: url('hero.jpg') center/cover no-repeat;
+      height: 60vh;
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+      padding: 0 1rem;
     }
-    #hero::before { content:''; position:absolute; inset:0; background:rgba(0,0,0,.45); }
-    #hero .content { position:relative; z-index:1; padding:0 1rem; max-width:600px; }
-    #hero h1 { font-size:1.8rem; margin-bottom:.75rem; }
-    #hero p { font-size:1rem; margin-bottom:1.5rem; }
-    .btn { background:var(--accent); color:#fff; padding:.5rem 1rem; border:none; border-radius:var(--radius); cursor:pointer; font-weight:600; text-decoration:none; display:block; width:100%; text-align:center; }
-    .btn:hover { background:var(--highlight); }
-    /* Contact buttons spacing */
-    #contact form .btn { margin-bottom:1rem; }
-    #contact > a.btn { margin-top:1rem; }
-    /* Sections */
-    section { padding:2rem 1rem; }
-    .container { max-width:1000px; margin:0 auto; }
-    .grid { display:grid; gap:1rem; }
-    .two-col { grid-template-columns:1fr 1fr; }
-    @media(max-width:600px) { .two-col { grid-template-columns:1fr; } }
-    .card { background:#fff; border-radius:var(--radius); box-shadow:0 2px 4px rgba(0,0,0,.05); padding:1rem; }
-    .card h3 { margin-bottom:.5rem; color:var(--primary); }
-    .inventory { grid-template-columns:1fr 1fr 1fr; }
-    @media(max-width:800px) { .inventory { grid-template-columns:1fr 1fr; } }
-    @media(max-width:500px) { .inventory { grid-template-columns:1fr; } }
-    .inv-card img { width:100%; border-radius:var(--radius) var(--radius) 0 0; }
-    .inv-card .card-body { padding:.75rem; }
-    .steps { counter-reset:step; padding-left:0; list-style:none; }
-    .steps li { position:relative; padding-left:2rem; margin-bottom:.75rem; }
-    .steps li::before { counter-increment:step; content:counter(step); position:absolute; left:0; top:0; background:var(--accent); color:#fff; width:1.5rem; height:1.5rem; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1rem; }
-    details { margin-bottom:1rem; }
-    summary { background:#fff; padding:.75rem; border-radius:var(--radius); cursor:pointer; }
-    details p { padding:.75rem; background:#fafafa; border-radius:0 0 var(--radius) var(--radius); }
-    form { display:flex; flex-direction:column; gap:.75rem; }
-    input,textarea { padding:.5rem; border:1px solid #ccd1d9; border-radius:var(--radius); width:100%; }
-    footer { background:var(--primary); color:#fff; text-align:center; padding:1rem; font-size:.8rem; }
+    #hero h1 { font-size:2.5rem; margin-bottom:.5rem; }
+    #hero p { font-size:1.2rem; margin-bottom:1rem; }
+    #hero a.btn { max-width: 300px; }
+
+    /* SERVICES / PROCESSUS / INVENTORY etc. */
+    section { padding: 3rem 0; background: var(--light); }
+    section:nth-of-type(even) { background: white; }
+    section h2 { text-align:center; margin-bottom:2rem; }
+
+    .grid {
+      display: grid;
+      gap:1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    }
+    .card { background:white; border-radius:.5rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1); overflow:hidden; }
+
+    .card img { width:100%; display:block; }
+    .card-body { padding:1rem; }
+    .card-body h3 { margin-bottom:.5rem; }
+    .card-body p { font-size:.9rem; color:#555; }
+
+    /* CONTACT */
+    #contact form .btn {
+      display: block;
+      width: 100%;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    #contact > a.btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-top: 0;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align:center;
+      padding:1rem;
+      font-size:.85rem;
+      background:#222;
+      color:#aaa;
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      header nav { display: none; }
+      .burger { display: block; }
+      header.open nav {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: var(--nav-bg);
+        padding: .5rem 0;
+        z-index: 100;
+      }
+      header.open nav a {
+        padding: .75rem 1rem;
+        border-top: 1px solid rgba(255,255,255,0.1);
+      }
+      #hero { height: 40vh; }
+      #hero h1 { font-size:2rem; }
+      #hero p { font-size:1rem; }
+    }
   </style>
 </head>
 <body>
+
   <header>
     <div class="logo">Autoimports</div>
-    <div id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <div class="burger"><i class="fas fa-bars"></i></div>
     <nav>
-      <ul>
-        <li><a href="#hero">Accueil</a></li>
-        <li><a href="#inventory">Stock</a></li>
-        <li><a href="#how">Processus</a></li>
-        <li><a href="#faqs">FAQ</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <a href="#hero">Accueil</a>
+      <a href="#inventory">Stock</a>
+      <a href="#process">Processus</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <!-- Hero -->
   <section id="hero">
-    <div class="content">
-      <h1>Importez votre auto de rêve sans stress</h1>
-      <p>De la recherche jusqu’à l’expédition, nous gérons tout pour vous.</p>
-      <a href="#contact" class="btn">Demandez un devis</a>
+    <h1>Importez votre auto de rêve sans stress</h1>
+    <p>De la recherche jusqu’à l’expédition, nous gérons tout pour vous.</p>
+    <a href="#contact" class="btn">Demandez un devis</a>
+  </section>
+
+  <!-- … your other sections (services, process, inventory, faq) … -->
+
+  <section id="contact">
+    <div class="container">
+      <h2>Contact</h2>
+      <form action="mailto:goodmoodhub.store@gmail.com" method="post" enctype="text/plain">
+        <input type="text" name="name" placeholder="Nom" required>
+        <input type="email" name="email" placeholder="E-mail" required>
+        <textarea name="message" placeholder="Votre message" required></textarea>
+        <button type="submit" class="btn">Envoyer</button>
+      </form>
+      <a href="https://wa.me/213797386255" class="btn">
+        <i class="fab fa-whatsapp"></i> Chat WhatsApp
+      </a>
     </div>
   </section>
 
-  <!-- Services -->
-  <section id="services">
-    <div class="container">
-      <h2 style="text-align:center;margin-bottom:1.5rem;">Nos services</h2>
-      <div class="grid two-col">
-        <div class="card"><h3>Approvisionnement de véhicules</h3><p>Nous trouvons la meilleure qualité directement à la source.</p></div>
-        <div class="card"><h3>Inspection préalable à l'achat</h3><p>Rapport indépendant 150 points avec photos & scan OBD.</p></div>
-        <div class="card"><h3>Logistique d'expédition</h3><p>RORO ou conteneur, nous réservons les meilleures traversées.</p></div>
-        <div class="card"><h3>Assurance maritime</h3><p>Couverture tous-risques jusqu’à la valeur CIF.</p></div>
-      </div>
-    </div>
-  </section>
+  <footer>
+    © 2025 Autoimports. Tous droits réservés.
+  </footer>
 
-  <!-- How it works -->
-  <section id="how">
-    <div class="container">
-      <h2 style="text-align:center;margin-bottom:1.5rem;">Comment ça marche ?</h2>
-      <ol class="steps">
-        <li>Demande de devis → Proposition de véhicules</li>
-        <li>Inspection & confirmation de prix</li>
-        <li>Paiement</li>
-        <li>Réservation RORO & expédition</li>
-        <li>Livraison de tous les documents</li>
-        <li>Vous récupérez votre voiture au port</li>
-      </ol>
-    </div>
-  </section>
+  <script>
+    const header = document.querySelector('header');
+    const burger = document.querySelector('.burger');
+    const links = document.querySelectorAll('header nav a');
 
-  <!-- Inventory -->
-  <section id="inventory">
-    <div class="container">
-      <h2 style="text-align:center;margin-bottom:1.5rem;">Select your car</h2>
-      <div class="grid inventory">
-        <div class="card inv-card"><img src="toyota-corolla.jpg" alt="Toyota Corolla"/><div class="card-body"><h3>Corolla Axio 2023</h3><p>30 000 km · Prix sur demande</p></div></div>
-        <div class="card inv-card"><img src="toyota-prado.jpg" alt="Land Cruiser Prado"/><div class="card-body"><h3>Prado 2024</h3><p>20 000 km · Prix sur demande</p></div></div>
-        <div class="card inv-card"><img src="toyota-hilux.jpg" alt="Hilux Revo"/><div class="card-body"><h3>Hilux Revo 2025</h3><p>6 000 km · Prix sur demande</p></div></div>
-      </div>
-      <p style="text-align:center;margin-top:1rem;font-size:.9rem;">Votre voiture n'est pas ici ? <a href="#contact">Envoyez-nous les détails du véhicule.</a></p>
-    </div>
-  </section>
+    burger.addEventListener('click', () => {
+      header.classList.toggle('open');
+    });
+    links.forEach(a => a.addEventListener('click', () => {
+      header.classList.remove('open');
+    }));
+  </script>
 
-  <!-- FAQs -->
-  <section id="faqs">
-    <div class="container">
-      <h2 style="text-align:center;margin-bottom:1.5rem;">FAQ</h2>
-      <details><summary>Combien de temps prend la livraison ?</summary><p>Environ 5–7 semaines selon l'itinéraire.</p></details>
-      <details><summary>Quelles méthodes de paiement acceptez-vous ?</summary><p>Virement bancaire, cash.</p></details>
-      <details><summary>Vos véhicules sont-ils d'origine ?</summary><p>Oui, tous nos véhicules sont du pays où ils sont fabriqués.</p></details>
-      <details><summary>Qui_paquets internautes\application bref... etc
-(redacted)
+</body>
+</html>
