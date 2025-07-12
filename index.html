@@ -7,10 +7,8 @@
   <!-- Google Fonts & Font Awesome -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
-
   <!-- GLightbox CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"/>
-
   <style>
     :root {
       --primary: #0A1F44;
@@ -126,7 +124,6 @@
       font-size:1rem; width:100%;
     }
     #contact form .btn { margin-top:.5rem; }
-    #contact > a.btn { margin-top:1rem; }
 
     /* FOOTER */
     footer {
@@ -155,124 +152,58 @@
     </nav>
   </header>
 
-  <section id="hero">
-    <div class="content">
-      <h1>Importez votre auto de rêve sans stress</h1>
-      <p>De la recherche jusqu’à l’expédition, nous gérons tout pour vous.</p>
-      <a href="#contact" class="btn">Demandez un devis</a>
-    </div>
-  </section>
+  <section id="hero"> … </section>
+  <section id="services"> … </section>
+  <section id="how"> … </section>
+  <section id="inventory"> … </section>
+  <section id="faqs"> … </section>
 
-  <section id="services">
-    <div class="container two-col">
-      <div class="card"><h3>Approvisionnement de véhicules</h3><p>Nous trouvons la meilleure qualité directement à la source.</p></div>
-      <div class="card"><h3>Inspection préalable à l’achat</h3><p>Rapport indépendant 150 points avec photos & scan OBD.</p></div>
-      <div class="card"><h3>Logistique d’expédition</h3><p>RORO ou conteneur, nous réservons les meilleures traversées.</p></div>
-      <div class="card"><h3>Assurance maritime</h3><p>Couverture tous-risques jusqu’à la valeur CIF.</p></div>
-    </div>
-  </section>
-
-  <section id="how">
-    <div class="container">
-      <h2>Comment ça marche ?</h2>
-      <ol class="steps">
-        <li>Demande de devis → Proposition de véhicules</li>
-        <li>Inspection & confirmation de prix</li>
-        <li>Paiement</li>
-        <li>Réservation RORO & expédition</li>
-        <li>Livraison de tous les documents</li>
-        <li>Vous récupérez votre voiture au port</li>
-      </ol>
-    </div>
-  </section>
-
-  <section id="inventory">
-    <div class="container">
-      <h2>Sélectionnez votre voiture</h2>
-      <div class="inventory">
-        <!-- Rush 2022 Card with collapsible specs -->
-        <div class="card inv-card">
-          <a href="images/rush2022/car1-1.jpg" class="glightbox" data-gallery="rush2022">
-            <img src="images/rush2022/car1-1.jpg" alt="Toyota Rush 2022">
-          </a>
-          <div class="card-body">
-            <h3>Toyota Rush 2022</h3>
-            <!-- Removed km and price line -->
-            <details class="specs">
-              <summary>Voir les spécifications</summary>
-              <ul>
-                <li>Modèle : Toyota Rush</li>
-                <li>Année modèle : 2022</li>
-                <li>Kilométrage : 17 000 km</li>
-                <li>Cylindrée : 1 500 cm³</li>
-                <li>Transmission : Automatique (AT)</li>
-                <li>Carburant : Essence</li>
-                <li>Couleur extérieure : Blanc</li>
-                <li>Direction : Gauche</li>
-                <li>Traction : 2 roues motrices</li>
-                <li>Places : 7</li>
-                <li>Portes : 5</li>
-              </ul>
-            </details>
-          </div>
-        </div>
-      </div>
-      <div style="text-align:center; margin-top:1.5rem;">
-        <p>Vous voulez un autre véhicule ?</p>
-        <a href="#contact" class="btn">Envoyez-nous les détails du véhicule</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="faqs">
-    <div class="container">
-      <h2>FAQ</h2>
-      <details><summary>Combien de temps prend la livraison ?</summary><p>Environ 5–7 semaines selon l’itinéraire.</p></details>
-      <details><summary>Quelles méthodes de paiement acceptez-vous ?</summary><p>Virement bancaire, cash.</p></details>
-      <details><summary>Vos véhicules sont-ils d’origine ?</summary><p>Oui, tous nos véhicules sont du pays où ils sont fabriqués.</p></details>
-      <details><summary>Qui paie les frais de douane et les VTA ?</summary><p>Le client est responsable du paiement de ces frais pour récupérer son véhicule.</p></details>
-      <details><summary>Livrez-vous tous les documents avant l’arrivée ?</summary><p>Oui, tous les documents sont expédiés avant l’arrivée de l’auto au port de destination.</p></details>
-      <details><summary>Puis-je demander un véhicule non listé ?</summary><p>Oui, envoyez-nous les détails du véhicule.</p></details>
-    </div>
-  </section>
-
+  <!-- CONTACT -->
   <section id="contact">
     <div class="container">
       <h2>Contactez-nous</h2>
-      <form action="mailto:goodmoodhub.store@gmail.com" method="POST" enctype="text/plain">
-        <input type="text" name="Nom" placeholder="Nom" required>  
-        <input type="email" name="Email" placeholder="Email" required>  
-        <textarea name="Message" rows="4" placeholder="Votre message …" required></textarea>  
-        <button type="submit" class="btn">Envoyer</button>  
-      </form>  
-      <a href="https://wa.me/213797386255" class="btn" style="margin-top:1rem;">  
-        <i class="fab fa-whatsapp"></i> Chat WhatsApp  
-      </a>  
-    </div>  
-  </section>  
+      <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+        <input type="text" name="name" placeholder="Nom" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="message" rows="4" placeholder="Votre message …" required></textarea>
+
+        <!-- Formspree hidden fields -->
+        <input type="hidden" name="_subject" value="Nouveau message Autoimports">
+        <input type="hidden" name="_replyto" value="">
+        <!-- Redirect to thank-you page after send: -->
+        <input type="hidden" name="_next" value="https://votresite.com/merci.html">
+
+        <button type="submit" class="btn">Envoyer</button>
+      </form>
+
+      <a href="https://wa.me/213797386255" class="btn" style="margin-top:1rem;">
+        <i class="fab fa-whatsapp"></i> Chat WhatsApp
+      </a>
+    </div>
+  </section>
 
   <footer>  
     <div>© 2025 Autoimports · Tous droits réservés</div>  
-  </footer>  
+  </footer>
 
-  <!-- GLightbox JS -->  
-  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>  
-  <script>  
-    function toggleMenu() {  
-      document.body.classList.toggle('open');  
-    }  
-    document.addEventListener('DOMContentLoaded', () => {  
-      const gallery = document.querySelector('#inventory .inventory');  
-      for (let i = 2; i <= 26; i++) {  
-        const a = document.createElement('a');  
-        a.href = `images/rush2022/car1-${i}.jpg`;  
-        a.className = 'glightbox';  
-        a.setAttribute('data-gallery', 'rush2022');  
-        a.style.display = 'none';  
-        gallery.appendChild(a);  
-      }  
-      GLightbox({ selector: '.glightbox' });  
-    });  
-  </script>  
-</body>  
+  <!-- GLightbox & menu script (unchanged) -->
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+  <script>
+    function toggleMenu() {
+      document.body.classList.toggle('open');
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const gallery = document.querySelector('#inventory .inventory');
+      for (let i = 2; i <= 26; i++) {
+        const a = document.createElement('a');
+        a.href = `images/rush2022/car1-${i}.jpg`;
+        a.className = 'glightbox';
+        a.setAttribute('data-gallery', 'rush2022');
+        a.style.display = 'none';
+        gallery.appendChild(a);
+      }
+      GLightbox({ selector: '.glightbox' });
+    });
+  </script>
+</body>
 </html>
