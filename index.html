@@ -100,13 +100,20 @@
       gap: 2rem;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     }
-    .inv-card img {
-      display: block;
+    .inv-card .img-container {
       width: 100%;
-      height: auto;                     /* show full image, scaled */
+      aspect-ratio: 1/1;                /* force square */
+      overflow: hidden;
       border-top-left-radius: var(--radius);
       border-top-right-radius: var(--radius);
-      margin: 0 auto 1rem;
+      margin-bottom: 1rem;
+    }
+    .inv-card .img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: right center;    /* show right side of image */
+      display: block;
     }
     .inv-card .card-body {
       background:#fff;
@@ -126,17 +133,33 @@
       background:#fff; border:1px solid #e0e4ea; border-top:none;
     }
 
-    /* CONTACT */
+    /* CONTACT FORM */
     #contact { padding:3.5rem 1.5rem; }
-    #contact h2 { text-align:center; margin-bottom:1.5rem; color:var(--primary); }
-    #contact p, #contact a { text-align:center; font-size:1rem; }
+    .contact-form {
+      max-width:600px; margin:0 auto; display:grid; gap:1rem;
+    }
+    .contact-form label {
+      font-weight:600; margin-bottom:.3rem; display:block;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width:100%; padding:.5rem; border:1px solid #ccc;
+      border-radius:var(--radius); font-family:inherit;
+    }
+    .contact-form button {
+      justify-self:start;
+      background:var(--accent); color:#fff; border:none;
+      padding:.75rem 1.5rem; border-radius:var(--radius);
+      cursor:pointer; font-weight:600;
+    }
+    .contact-form button:hover { background:var(--highlight); }
 
     /* FOOTER */
     footer { background:var(--primary); color:#fff; text-align:center; padding:2rem 1rem; font-size:.9rem; }
 
     @media(max-width:600px) {
       #hero h1 { font-size:2rem; }
-      .btn { width:100%; text-align:center; }
+      .btn, .contact-form button { width:100%; text-align:center; }
     }
   </style>
 </head>
@@ -201,7 +224,7 @@
       <div class="inventory">
         <div class="card inv-card">
           <div class="card-body">
-            <a href="images/rush2022/car1-1.jpg" class="glightbox" data-gallery="rush2022">
+            <a href="images/rush2022/car1-1.jpg" class="glightbox img-container" data-gallery="rush2022">
               <img src="images/rush2022/car1-1.jpg" alt="Toyota Rush 2022">
             </a>
             <h3>Toyota Rush 2022</h3>
@@ -223,7 +246,7 @@
             </details>
           </div>
         </div>
-        <!-- clone and edit the above .inv-card for each additional voiture -->
+        <!-- Dupliquez et modifiez ce bloc pour chaque voiture supplémentaire -->
       </div>
       <div style="text-align:center; margin-top:1.5rem;">
         <a href="#contact" class="btn">Envoyez-nous les détails du véhicule</a>
@@ -234,7 +257,21 @@
   <section id="contact">
     <div class="container">
       <h2>Contactez-nous</h2>
-      <p>Pour toute demande, écrivez à <a href="mailto:contact@autoimports.com">contact@autoimports.com</a> ou appelez le +33 1 23 45 67 89.</p>
+      <form action="#" method="post" class="contact-form">
+        <div>
+          <label for="name">Nom</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" required></textarea>
+        </div>
+        <button type="submit">Envoyer</button>
+      </form>
     </div>
   </section>
 
@@ -246,18 +283,17 @@
 
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script>
-    // mobile menu toggle
+    // toggle mobile menu
     document.getElementById('burger').addEventListener('click', () => {
       document.body.classList.toggle('open');
     });
-    // initialize lightbox gallery
-    const lightbox = GLightbox({ selector: '.glightbox' });
-    // optionally preload hidden images for gallery
-    document.querySelectorAll('#inventory .inventory .inv-card a.img-hidden').forEach(a => a.remove());
+    // init gallery
+    GLightbox({ selector: '.glightbox' });
+    // preload hidden images
     for (let i = 2; i <= 26; i++) {
       const a = document.createElement('a');
       a.href = `images/rush2022/car1-${i}.jpg`;
-      a.className = 'glightbox img-hidden';
+      a.className = 'glightbox';
       a.setAttribute('data-gallery', 'rush2022');
       a.style.display = 'none';
       document.querySelector('#inventory .inventory').appendChild(a);
