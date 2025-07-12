@@ -1,90 +1,283 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <title>Sélectionnez votre voiture</title>
-  <!-- Bootstrap & GLightbox CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Autoimports | Courtier import auto</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
+
+  <!-- GLightbox CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"/>
+
   <style>
-    /* --- Card layout tweaks --- */
-    .card-main-image img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      border-radius: 0.5rem;
-      cursor: pointer;
+    :root {
+      --primary:   #0A1F44;
+      --accent:    #2EA7A9;
+      --highlight: #D71920;
+      --bg:        #F5F7FA;
+      --text:      #333;
+      --radius:    8px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Open Sans',Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; scroll-behavior:smooth; }
+    h1,h2,h3 { font-family:'Poppins',sans-serif; }
+    a { text-decoration:none; color:inherit; }
+    .container { width:90%; max-width:1000px; margin:0 auto; }
+
+    /* HEADER */
+    header {
+      background:var(--primary); color:#fff;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:1rem 1.5rem; position:sticky; top:0; z-index:1000;
+    }
+    .logo { font-size:1.6rem; font-weight:600; }
+    nav ul { list-style:none; display:flex; gap:1rem; }
+    nav a { color:#fff; font-weight:500; transition:opacity .2s; }
+    nav a:hover { opacity:.7; }
+    #burger { display:none; width:24px; height:18px; position:relative; cursor:pointer; }
+    #burger span { background:#fff; height:3px; width:100%; position:absolute; left:0; transition:.3s; }
+    #burger span:nth-child(1){ top:0; }
+    #burger span:nth-child(2){ top:7px; }
+    #burger span:nth-child(3){ top:14px; }
+    @media(max-width:700px){ nav ul{display:none;} #burger{display:block;} }
+    .open nav ul {
+      display:flex; flex-direction:column; gap:1rem;
+      position:absolute; top:60px; left:0; width:100%;
+      background:var(--primary); padding:1rem;
     }
 
-    /* Hide the container that only holds invisible anchors */
-    .card-thumbs {
-      display: none;
+    /* HERO */
+    #hero {
+      height:80vh; min-height:480px;
+      background:url('hero.jpg') center/cover no-repeat;
+      position:relative; display:flex; align-items:center; justify-content:center;
+      text-align:center; color:#fff;
     }
+    #hero::before {
+      content:""; position:absolute; inset:0; background:rgba(0,0,0,.45);
+    }
+    #hero .content { position:relative; z-index:1; padding:0 1rem; max-width:720px; }
+    #hero h1 { font-size:2.6rem; margin-bottom:1rem; }
+    #hero p  { font-size:1.1rem; margin-bottom:2rem; }
+    .btn {
+      background:var(--accent); color:#fff;
+      padding:.75rem 1.5rem; border:none; border-radius:var(--radius);
+      cursor:pointer; font-weight:600; display:inline-block;
+    }
+    .btn:hover { background:var(--highlight); }
+
+    /* SERVICES */
+    section { padding:3.5rem 1.5rem; scroll-margin-top:80px; }
+    .two-col { display:grid; gap:2rem; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
+    .card { background:#fff; border:1px solid #e0e4ea; border-radius:var(--radius); box-shadow:0 2px 4px rgba(0,0,0,.05); padding:1.25rem; }
+    .card h3 { margin-bottom:.5rem; color:var(--primary); }
+
+    /* PROCESSUS */
+    .steps { counter-reset:step; }
+    .steps li {
+      list-style:none; position:relative; padding-left:2.5rem; margin-bottom:1rem;
+    }
+    .steps li::before {
+      counter-increment:step; content:counter(step);
+      position:absolute; left:0; top:0;
+      background:var(--accent); color:#fff;
+      width:2rem; height:2rem; border-radius:50%;
+      display:flex; align-items:center; justify-content:center; font-weight:600;
+    }
+
+    /* INVENTAIRE */
+    .inventory { display:grid; gap:2rem; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
+    .inv-card {
+      background:#fff; border:1px solid #e0e4ea; border-radius:var(--radius);
+      box-shadow:0 2px 4px rgba(0,0,0,.05); padding:1rem; overflow:hidden;
+    }
+    .card-top { display:flex; align-items:flex-start; gap:1rem; }
+    .card-text { flex:1; }
+    .card-text h3 { margin-bottom:1rem; }
+    .card-main-image img {
+      max-width:200px; width:100%; height:auto; object-fit:contain; border-radius:4px;
+      display:block;
+    }
+    .card-thumbs {
+      display:flex; gap:.5rem; overflow-x:auto; margin-top:1rem;
+    }
+    .card-thumbs img {
+      width:60px; height:60px; object-fit:cover; border-radius:4px; cursor:pointer;
+    }
+
+    /* COLLAPSIBLE SPECS */
+    .specs { margin-top:1rem; font-size:.95rem; }
+    .specs summary { cursor:pointer; font-weight:600; list-style:none; }
+    .specs[open] summary { color:var(--accent); }
+    .specs ul { margin-top:.5rem; padding-left:1rem; }
+    .specs ul li { margin-bottom:.25rem; }
+
+    /* FAQ */
+    details { background:#fff; border:1px solid #e0e4ea; border-radius:var(--radius); padding:1rem; margin-bottom:1rem; cursor:pointer; }
+    summary { font-weight:600; }
+
+    /* CONTACT */
+    form { display:flex; flex-direction:column; gap:1rem; max-width:500px; margin:0 auto; }
+    input,textarea { padding:.75rem; border:1px solid #ccd1d9; border-radius:var(--radius); font-size:1rem; width:100%; }
+    #contact form .btn { margin-top:.5rem; }
+    #contact > a.btn { margin-top:1rem; }
+
+    /* FOOTER */
+    footer { background:var(--primary); color:#fff; text-align:center; padding:1.5rem; font-size:.9rem; }
+    footer div { color:#aaa; }
+
+    @media(max-width:600px){ #hero h1{ font-size:2.2rem;} }
   </style>
 </head>
-<body class="bg-light">
-  <div class="container py-4">
-    <h1 class="mb-4">Sélectionnez votre voiture</h1>
+<body>
 
-    <!-- ========================= CAR CARD ========================= -->
-    <div class="card shadow-sm mb-4">
-      <div class="card-body">
-        <div class="d-flex align-items-start gap-3">
-          <!-- Visible thumbnail (click to open gallery) -->
-          <div class="card-main-image flex-shrink-0" style="width:180px;">
-            <a href="images/rush2022/car1-01.jpg" class="glightbox" data-gallery="rush2022">
-              <img src="images/rush2022/car1-01.jpg" alt="Toyota Rush 2022">
-            </a>
-          </div>
+  <header>
+    <div class="logo">Autoimports</div>
+    <div id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <nav>
+      <ul>
+        <li><a href="#hero">Accueil</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">Processus</a></li>
+        <li><a href="#inventory">Stock</a></li>
+        <li><a href="#faqs">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-          <!-- Car title + specs -->
-          <div class="flex-grow-1">
-            <h4 class="card-title mb-2">Toyota Rush 2022</h4>
-            <button class="btn btn-outline-primary btn-sm mb-3" data-bs-toggle="collapse" data-bs-target="#specs-rush2022">
-              Voir les spécifications
-            </button>
-
-            <div class="collapse" id="specs-rush2022">
-              <ul class="list-unstyled mb-0">
-                <li>Moteur : 1.5 L essence</li>
-                <li>Transmission : Automatique</li>
-                <li>Kilométrage : 42 000 km</li>
-                <li>Couleur : Blanc perle</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Invisible anchors for the rest of the gallery -->
-        <div class="card-thumbs" id="thumbs-rush2022"></div>
-      </div>
+  <section id="hero">
+    <div class="content">
+      <h1>Importez votre auto de rêve sans stress</h1>
+      <p>De la recherche jusqu’à l’expédition, nous gérons tout pour vous.</p>
+      <a href="#contact" class="btn">Demandez un devis</a>
     </div>
-    <!-- ======================= / CAR CARD ========================= -->
+  </section>
 
-    <!-- Duplicate the entire CAR CARD block (above) for more vehicles.
-         Just be sure to: (1) change the IDs & data-gallery attributes,
-         (2) point src/href to that car’s images, and (3) update specs. -->
-  </div>
+  <section id="services">
+    <div class="container two-col">
+      <div class="card"><h3>Approvisionnement de véhicules</h3><p>Nous trouvons la meilleure qualité directement à la source.</p></div>
+      <div class="card"><h3>Inspection préalable à l’achat</h3><p>Rapport indépendant 150 points avec photos & scan OBD.</p></div>
+      <div class="card"><h3>Logistique d’expédition</h3><p>RORO ou conteneur, nous réservons les meilleures traversées.</p></div>
+      <div class="card"><h3>Assurance maritime</h3><p>Couverture tous-risques jusqu’à la valeur CIF.</p></div>
+    </div>
+  </section>
 
-  <!-- Bootstrap + GLightbox JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      /* ----------------- Toyota Rush 2022 gallery ----------------- */
-      const thumbsRush = document.getElementById('thumbs-rush2022');
-      for (let i = 2; i <= 26; i++) {
-        const num = String(i).padStart(2, '0');
-        const a = document.createElement('a');
-        a.href = `images/rush2022/car1-${num}.jpg`;
-        a.className = 'glightbox';
-        a.dataset.gallery = 'rush2022';
-        thumbsRush.appendChild(a); // invisible anchor; no <img>
-      }
+  <section id="how">
+    <div class="container">
+      <h2>Comment ça marche ?</h2>
+      <ol class="steps">
+        <li>Demande de devis → Proposition de véhicules</li>
+        <li>Inspection & confirmation de prix</li>
+        <li>Paiement</li>
+        <li>Réservation RORO & expédition</li>
+        <li>Livraison de tous les documents</li>
+        <li>Vous récupérez votre voiture au port</li>
+      </ol>
+    </div>
+  </section>
 
-      /* --------------- Initialise GLightbox --------------- */
-      GLightbox({ selector: '.glightbox' });
-    });
-  </script>
-</body>
+  <section id="inventory">
+    <div class="container">
+      <h2>Sélectionnez votre voiture</h2>
+      <div class="inventory">
+
+        <!-- Toyota Rush 2022 -->  
+        <div class="card inv-card">  
+          <div class="card-top">  
+            <div class="card-text">  
+              <h3>Toyota Rush 2022</h3>  
+              <details class="specs">  
+                <summary>Voir les spécifications</summary>  
+                <ul>  
+                  <li>Modèle : Toyota Rush</li>  
+                  <li>Année modèle : 2022</li>  
+                  <li>Kilométrage : 17 000 km</li>  
+                  <li>Cylindrée : 1 500 cm³</li>  
+                  <li>Transmission : Automatique (AT)</li>  
+                  <li>Carburant : Essence</li>  
+                  <li>Couleur extérieure : Blanc</li>  
+                  <li>Direction : Gauche</li>  
+                  <li>Traction : 2 roues motrices</li>  
+                  <li>Places : 7</li>  
+                  <li>Portes : 5</li>  
+                </ul>  
+              </details>  
+            </div>  
+
+            <div class="card-main-image">  
+              <a href="images/rush2022/car1-01.jpg" class="glightbox" data-gallery="rush2022">  
+                <img src="images/rush2022/car1-01.jpg" alt="Toyota Rush 2022">  
+              </a>  
+            </div>  
+          </div>  
+
+          <div class="card-thumbs"></div>  
+        </div>  
+
+      </div>  
+
+      <div style="text-align:center; margin-top:1.5rem;">  
+        <a href="#contact" class="btn">Envoyez-nous les détails du véhicule</a>  
+      </div>  
+    </div>  
+  </section>  
+
+  <section id="faqs">  
+    <div class="container">  
+      <h2>FAQ</h2>  
+      <details><summary>Combien de temps prend la livraison ?</summary><p>Environ 5–7 semaines selon l’itinéraire.</p></details>  
+      <details><summary>Quelles méthodes de paiement acceptez-vous ?</summary><p>Virement bancaire, cash.</p></details>  
+      <details><summary>Vos véhicules sont-ils d’origine ?</summary><p>Oui, tous nos véhicules sont du pays où ils sont fabriqués.</p></details>  
+      <details><summary>Qui paie les frais de douane et les VTA ?</summary><p>Le client est responsable du paiement de ces frais.</p></details>  
+      <details><summary>Livrez-vous tous les documents avant l’arrivée ?</summary><p>Oui, avant l’arrivée au port.</p></details>  
+      <details><summary>Puis-je demander un véhicule non listé ?</summary><p>Oui, envoyez-nous les détails du véhicule.</p></details>  
+    </div>  
+  </section>  
+
+  <section id="contact">  
+    <div class="container">  
+      <h2>Contactez-nous</h2>  
+      <form action="mailto:goodmoodhub.store@gmail.com" method="POST" enctype="text/plain">  
+        <input type="text" name="Nom" placeholder="Nom" required>  
+        <input type="email" name="Email" placeholder="Email" required>  
+        <textarea name="Message" rows="4" placeholder="Votre message …" required></textarea>  
+        <button type="submit" class="btn">Envoyer</button>  
+      </form>  
+      <a href="https://wa.me/213797386255" class="btn" style="margin-top:1rem;">  
+        <i class="fab fa-whatsapp"></i> Chat WhatsApp  
+      </a>  
+    </div>  
+  </section>  
+
+  <footer>  
+    <div>© 2025 Autoimports · Tous droits réservés</div>  
+  </footer>  
+
+  <!-- GLightbox JS & dynamic thumbnail injection -->  
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>  
+  <script>  
+    function toggleMenu() {  
+      document.body.classList.toggle('open');  
+    }  
+    document.addEventListener('DOMContentLoaded', () => {  
+      const thumbs = document.querySelector('.card-thumbs');  
+      for (let i = 1; i <= 26; i++) {  
+        const num = String(i).padStart(2, '0');  
+        const a = document.createElement('a');  
+        a.href = `images/rush2022/car1-${num}.jpg`;  
+        a.className = 'glightbox';  
+        a.setAttribute('data-gallery','rush2022');  
+        const img = document.createElement('img');  
+        img.src = a.href;  
+        img.alt = 'Rush 2022';  
+        a.appendChild(img);  
+        thumbs.appendChild(a);  
+      }  
+      GLightbox({ selector: '.glightbox' });  
+    });  
+  </script>  
+</body>  
 </html>
