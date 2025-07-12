@@ -6,7 +6,7 @@
   <title>Autoimports | Courtier import auto</title>
   <!-- Google Fonts & Font Awesome -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
   <!-- GLightbox -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"/>
   <style>
@@ -70,7 +70,7 @@
     .btn:hover { background:var(--highlight); }
 
     /* SERVICES */
-    section { padding:3.5rem 1.5rem; scroll-margin-top:80px; }
+    #services { padding:3.5rem 1.5rem; }
     .two-col { display:grid; gap:2rem; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
     .card {
       background:#fff; border:1px solid #e0e4ea;
@@ -80,6 +80,7 @@
     .card h3 { margin-bottom:.5rem; color:var(--primary); }
 
     /* PROCESSUS */
+    #processus { padding:3.5rem 1.5rem; }
     .steps { counter-reset:step; }
     .steps li {
       list-style:none; position:relative; padding-left:2.5rem; margin-bottom:1rem;
@@ -93,6 +94,7 @@
     }
 
     /* INVENTAIRE */
+    #inventory { padding:3.5rem 1.5rem; }
     .inventory {
       display: grid;
       gap: 2rem;
@@ -101,24 +103,33 @@
     .inv-card img {
       display: block;
       width: 100%;
-      max-height: 150px;
-      object-fit: cover;
+      height: auto;                     /* show full image, scaled */
       border-top-left-radius: var(--radius);
       border-top-right-radius: var(--radius);
       margin: 0 auto 1rem;
     }
     .inv-card .card-body {
-      padding: 1rem;
+      background:#fff;
+      border:1px solid #e0e4ea;
+      border-radius:var(--radius);
+      box-shadow:0 2px 4px rgba(0,0,0,.05);
+      padding:1rem;
     }
-
-    /* COLLAPSIBLE SPECS */
     .specs { margin-top:1rem; font-size:.95rem; }
     .specs summary {
       list-style:none; cursor:pointer; padding:.5rem; background:var(--accent);
       color:#fff; border:none; border-radius:var(--radius); font-weight:500;
     }
     .specs[open] summary { background:var(--highlight); }
-    .specs ul { padding:1rem; list-style:disc; margin-left:1rem; background:#fff; border:1px solid #e0e4ea; border-top:none; }
+    .specs ul {
+      padding:1rem; list-style:disc; margin-left:1rem;
+      background:#fff; border:1px solid #e0e4ea; border-top:none;
+    }
+
+    /* CONTACT */
+    #contact { padding:3.5rem 1.5rem; }
+    #contact h2 { text-align:center; margin-bottom:1.5rem; color:var(--primary); }
+    #contact p, #contact a { text-align:center; font-size:1rem; }
 
     /* FOOTER */
     footer { background:var(--primary); color:#fff; text-align:center; padding:2rem 1rem; font-size:.9rem; }
@@ -142,9 +153,7 @@
       </ul>
     </nav>
     <div id="burger">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </div>
   </header>
 
@@ -156,13 +165,40 @@
     </div>
   </section>
 
-  <!-- (autres sections omises pour la brièveté) -->
+  <section id="services">
+    <div class="container two-col">
+      <div class="card">
+        <h3>Consultation Personnalisée</h3>
+        <p>Analyse de vos besoins et sélection des meilleures offres.</p>
+      </div>
+      <div class="card">
+        <h3>Gestion des Documents</h3>
+        <p>Vous décharge des formalités douanières et administratives.</p>
+      </div>
+      <div class="card">
+        <h3>Suivi Logistique</h3>
+        <p>Coordination du transport maritime jusqu’à votre porte.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="processus">
+    <div class="container">
+      <h2>Notre Processus</h2>
+      <ul class="steps">
+        <li>Prise de contact et définition du budget</li>
+        <li>Sourcing des véhicules disponibles</li>
+        <li>Négociation et achat</li>
+        <li>Organisation du transport et dédouanement</li>
+        <li>Livraison internationale</li>
+      </ul>
+    </div>
+  </section>
 
   <section id="inventory">
     <div class="container">
       <h2>Sélectionnez votre voiture</h2>
       <div class="inventory">
-
         <div class="card inv-card">
           <div class="card-body">
             <a href="images/rush2022/car1-1.jpg" class="glightbox" data-gallery="rush2022">
@@ -187,7 +223,7 @@
             </details>
           </div>
         </div>
-
+        <!-- clone and edit the above .inv-card for each additional voiture -->
       </div>
       <div style="text-align:center; margin-top:1.5rem;">
         <a href="#contact" class="btn">Envoyez-nous les détails du véhicule</a>
@@ -195,21 +231,37 @@
     </div>
   </section>
 
-  <!-- (scripts et pied de page omis pour la brièveté) -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contactez-nous</h2>
+      <p>Pour toute demande, écrivez à <a href="mailto:contact@autoimports.com">contact@autoimports.com</a> ou appelez le +33 1 23 45 67 89.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 AutoImports. Tous droits réservés.</p>
+    </div>
+  </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const gallery = document.querySelector('#inventory .inventory');
-      for (let i = 2; i <= 26; i++) {
-        const a = document.createElement('a');
-        a.href = `images/rush2022/car1-${i}.jpg`;
-        a.className = 'glightbox';
-        a.setAttribute('data-gallery', 'rush2022');
-        a.style.display = 'none';
-        gallery.appendChild(a);
-      }
-      GLightbox({ selector: '.glightbox' });
+    // mobile menu toggle
+    document.getElementById('burger').addEventListener('click', () => {
+      document.body.classList.toggle('open');
     });
+    // initialize lightbox gallery
+    const lightbox = GLightbox({ selector: '.glightbox' });
+    // optionally preload hidden images for gallery
+    document.querySelectorAll('#inventory .inventory .inv-card a.img-hidden').forEach(a => a.remove());
+    for (let i = 2; i <= 26; i++) {
+      const a = document.createElement('a');
+      a.href = `images/rush2022/car1-${i}.jpg`;
+      a.className = 'glightbox img-hidden';
+      a.setAttribute('data-gallery', 'rush2022');
+      a.style.display = 'none';
+      document.querySelector('#inventory .inventory').appendChild(a);
+    }
   </script>
 </body>
 </html>
