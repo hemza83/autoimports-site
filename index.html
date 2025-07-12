@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Autoimports | Courtier import auto</title>
   <!-- Google Fonts & Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 
   <!-- GLightbox CSS -->
@@ -13,12 +13,12 @@
 
   <style>
     :root {
-      --primary:   #0A1F44;
-      --accent:    #2EA7A9;
-      --highlight: #D71920;
-      --bg:        #F5F7FA;
-      --text:      #333;
-      --radius:    8px;
+      --primary: #0A1F44;
+      --accent:  #2EA7A9;
+      --highlight:#D71920;
+      --bg:      #F5F7FA;
+      --text:    #333;
+      --radius:  8px;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Open Sans',Arial,sans-serif; background:var(--bg); color:var(--text); line-height:1.6; scroll-behavior:smooth; }
@@ -41,7 +41,10 @@
     #burger span:nth-child(1){ top:0; }
     #burger span:nth-child(2){ top:7px; }
     #burger span:nth-child(3){ top:14px; }
-    @media(max-width:700px){ nav ul{display:none;} #burger{display:block;} }
+    @media(max-width:700px) {
+      nav ul { display:none; }
+      #burger { display:block; }
+    }
     .open nav ul {
       display:flex; flex-direction:column; gap:1rem;
       position:absolute; top:60px; left:0; width:100%;
@@ -71,7 +74,11 @@
     /* SERVICES */
     section { padding:3.5rem 1.5rem; scroll-margin-top:80px; }
     .two-col { display:grid; gap:2rem; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
-    .card { background:#fff; border:1px solid #e0e4ea; border-radius:var(--radius); box-shadow:0 2px 4px rgba(0,0,0,.05); padding:1.25rem; }
+    .card {
+      background:#fff; border:1px solid #e0e4ea;
+      border-radius:var(--radius); box-shadow:0 2px 4px rgba(0,0,0,.05);
+      padding:1.25rem;
+    }
     .card h3 { margin-bottom:.5rem; color:var(--primary); }
 
     /* PROCESSUS */
@@ -88,44 +95,44 @@
     }
 
     /* INVENTAIRE */
-    .inventory { display:grid; gap:2rem; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); }
-    .inv-card {
-      background:#fff; border:1px solid #e0e4ea; border-radius:var(--radius);
-      box-shadow:0 2px 4px rgba(0,0,0,.05); padding:1rem; overflow:hidden;
+    .inventory { display:grid; gap:2rem; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); }
+    .inv-card img {
+      width:100%; border-top-left-radius:var(--radius); border-top-right-radius:var(--radius);
     }
-    .card-top { display:flex; align-items:flex-start; gap:1rem; }
-    .card-text { flex:1; }
-    .card-text h3 { margin-bottom:1rem; }
-    .card-main-image img {
-      max-width:200px; width:100%; height:auto; object-fit:contain; border-radius:4px;
-      display:block;
-    }
-    .card-thumbs {
-      display:flex; gap:.5rem; overflow-x:auto; margin-top:1rem;
-    }
-    .card-thumbs img {
-      width:60px; height:60px; object-fit:cover; border-radius:4px; cursor:pointer;
-    }
+    .inv-card .card-body { padding:1rem; }
 
     /* COLLAPSIBLE SPECS */
     .specs { margin-top:1rem; font-size:.95rem; }
-    .specs summary { cursor:pointer; font-weight:600; list-style:none; }
+    .specs summary {
+      cursor:pointer; font-weight:600; list-style:none;
+    }
     .specs[open] summary { color:var(--accent); }
     .specs ul { margin-top:.5rem; padding-left:1rem; }
     .specs ul li { margin-bottom:.25rem; }
 
     /* FAQ */
-    details { background:#fff; border:1px solid #e0e4ea; border-radius:var(--radius); padding:1rem; margin-bottom:1rem; cursor:pointer; }
+    details {
+      background:#fff; border:1px solid #e0e4ea;
+      border-radius:var(--radius); padding:1rem; margin-bottom:1rem; cursor:pointer;
+    }
     summary { font-weight:600; }
 
     /* CONTACT */
-    form { display:flex; flex-direction:column; gap:1rem; max-width:500px; margin:0 auto; }
-    input,textarea { padding:.75rem; border:1px solid #ccd1d9; border-radius:var(--radius); font-size:1rem; width:100%; }
+    form {
+      display:flex; flex-direction:column; gap:1rem; max-width:500px; margin:0 auto;
+    }
+    input,textarea {
+      padding:.75rem; border:1px solid #ccd1d9; border-radius:var(--radius);
+      font-size:1rem; width:100%;
+    }
     #contact form .btn { margin-top:.5rem; }
     #contact > a.btn { margin-top:1rem; }
 
     /* FOOTER */
-    footer { background:var(--primary); color:#fff; text-align:center; padding:1.5rem; font-size:.9rem; }
+    footer {
+      background:var(--primary); color:#fff; text-align:center;
+      padding:1.5rem; font-size:.9rem;
+    }
     footer div { color:#aaa; }
 
     @media(max-width:600px){ #hero h1{ font-size:2.2rem;} }
@@ -183,64 +190,55 @@
     <div class="container">
       <h2>Sélectionnez votre voiture</h2>
       <div class="inventory">
+        <!-- Rush 2022 Card with collapsible specs -->
+        <div class="card inv-card">
+          <a href="images/rush2022/car1-1.jpg" class="glightbox" data-gallery="rush2022">
+            <img src="images/rush2022/car1-1.jpg" alt="Toyota Rush 2022">
+          </a>
+          <div class="card-body">
+            <h3>Toyota Rush 2022</h3>
+            <p>42 000 km · Prix sur demande</p>
+            <details class="specs">
+              <summary>Voir les spécifications</summary>
+              <ul>
+                <li>Modèle : Toyota Rush</li>
+                <li>Année modèle : 2022</li>
+                <li>Kilométrage : 17 000 km</li>
+                <li>Cylindrée : 1 500 cm³</li>
+                <li>Transmission : Automatique (AT)</li>
+                <li>Carburant : Essence</li>
+                <li>Couleur extérieure : Blanc</li>
+                <li>Direction : Gauche</li>
+                <li>Traction : 2 roues motrices</li>
+                <li>Places : 7</li>
+                <li>Portes : 5</li>
+              </ul>
+            </details>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:1.5rem;">
+        <a href="#contact" class="btn">Envoyez-nous les détails du véhicule</a>
+      </div>
+    </div>
+  </section>
 
-        <!-- Toyota Rush 2022 -->  
-        <div class="card inv-card">  
-          <div class="card-top">  
-            <div class="card-text">  
-              <h3>Toyota Rush 2022</h3>  
-              <details class="specs">  
-                <summary>Voir les spécifications</summary>  
-                <ul>  
-                  <li>Modèle : Toyota Rush</li>  
-                  <li>Année modèle : 2022</li>  
-                  <li>Kilométrage : 17 000 km</li>  
-                  <li>Cylindrée : 1 500 cm³</li>  
-                  <li>Transmission : Automatique (AT)</li>  
-                  <li>Carburant : Essence</li>  
-                  <li>Couleur extérieure : Blanc</li>  
-                  <li>Direction : Gauche</li>  
-                  <li>Traction : 2 roues motrices</li>  
-                  <li>Places : 7</li>  
-                  <li>Portes : 5</li>  
-                </ul>  
-              </details>  
-            </div>  
+  <section id="faqs">
+    <div class="container">
+      <h2>FAQ</h2>
+      <details><summary>Combien de temps prend la livraison ?</summary><p>Environ 5–7 semaines selon l’itinéraire.</p></details>
+      <details><summary>Quelles méthodes de paiement acceptez-vous ?</summary><p>Virement bancaire, cash.</p></details>
+      <details><summary>Vos véhicules sont-ils d’origine ?</summary><p>Oui, tous nos véhicules sont du pays où ils sont fabriqués.</p></details>
+      <details><summary>Qui paie les frais de douane et les VTA ?</summary><p>Le client est responsable du paiement de ces frais pour récupérer son véhicule.</p></details>
+      <details><summary>Livrez-vous tous les documents avant l’arrivée ?</summary><p>Oui, tous les documents sont expédiés avant l’arrivée de l’auto au port de destination.</p></details>
+      <details><summary>Puis-je demander un véhicule non listé ?</summary><p>Oui, envoyez-nous les détails du véhicule.</p></details>
+    </div>
+  </section>
 
-            <div class="card-main-image">  
-              <a href="images/rush2022/car1-01.jpg" class="glightbox" data-gallery="rush2022">  
-                <img src="images/rush2022/car1-01.jpg" alt="Toyota Rush 2022">  
-              </a>  
-            </div>  
-          </div>  
-
-          <div class="card-thumbs"></div>  
-        </div>  
-
-      </div>  
-
-      <div style="text-align:center; margin-top:1.5rem;">  
-        <a href="#contact" class="btn">Envoyez-nous les détails du véhicule</a>  
-      </div>  
-    </div>  
-  </section>  
-
-  <section id="faqs">  
-    <div class="container">  
-      <h2>FAQ</h2>  
-      <details><summary>Combien de temps prend la livraison ?</summary><p>Environ 5–7 semaines selon l’itinéraire.</p></details>  
-      <details><summary>Quelles méthodes de paiement acceptez-vous ?</summary><p>Virement bancaire, cash.</p></details>  
-      <details><summary>Vos véhicules sont-ils d’origine ?</summary><p>Oui, tous nos véhicules sont du pays où ils sont fabriqués.</p></details>  
-      <details><summary>Qui paie les frais de douane et les VTA ?</summary><p>Le client est responsable du paiement de ces frais.</p></details>  
-      <details><summary>Livrez-vous tous les documents avant l’arrivée ?</summary><p>Oui, avant l’arrivée au port.</p></details>  
-      <details><summary>Puis-je demander un véhicule non listé ?</summary><p>Oui, envoyez-nous les détails du véhicule.</p></details>  
-    </div>  
-  </section>  
-
-  <section id="contact">  
-    <div class="container">  
-      <h2>Contactez-nous</h2>  
-      <form action="mailto:goodmoodhub.store@gmail.com" method="POST" enctype="text/plain">  
+  <section id="contact">
+    <div class="container">
+      <h2>Contactez-nous</h2>
+      <form action="mailto:goodmoodhub.store@gmail.com" method="POST" enctype="text/plain">
         <input type="text" name="Nom" placeholder="Nom" required>  
         <input type="email" name="Email" placeholder="Email" required>  
         <textarea name="Message" rows="4" placeholder="Votre message …" required></textarea>  
@@ -256,25 +254,21 @@
     <div>© 2025 Autoimports · Tous droits réservés</div>  
   </footer>  
 
-  <!-- GLightbox JS & dynamic thumbnail injection -->  
+  <!-- GLightbox JS -->  
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>  
   <script>  
     function toggleMenu() {  
       document.body.classList.toggle('open');  
     }  
     document.addEventListener('DOMContentLoaded', () => {  
-      const thumbs = document.querySelector('.card-thumbs');  
-      for (let i = 1; i <= 26; i++) {  
-        const num = String(i).padStart(2, '0');  
+      const gallery = document.querySelector('#inventory .inventory');  
+      for (let i = 2; i <= 26; i++) {  
         const a = document.createElement('a');  
-        a.href = `images/rush2022/car1-${num}.jpg`;  
+        a.href = `images/rush2022/car1-${i}.jpg`;  
         a.className = 'glightbox';  
-        a.setAttribute('data-gallery','rush2022');  
-        const img = document.createElement('img');  
-        img.src = a.href;  
-        img.alt = 'Rush 2022';  
-        a.appendChild(img);  
-        thumbs.appendChild(a);  
+        a.setAttribute('data-gallery', 'rush2022');  
+        a.style.display = 'none';  
+        gallery.appendChild(a);  
       }  
       GLightbox({ selector: '.glightbox' });  
     });  
