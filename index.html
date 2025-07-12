@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Autoimports | Courtier import auto</title>
   <!-- Google Fonts & Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
   <!-- GLightbox -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"/>
+
   <style>
     :root {
       --primary: #0A1F44;
@@ -24,7 +25,74 @@
     a { text-decoration:none; color:inherit; }
     .container { width:90%; max-width:1000px; margin:0 auto; }
 
-    /* HEADER, HERO, SERVICES, PROCESSUS (inchangés) */
+    /* HEADER */
+    header {
+      background:var(--primary); color:#fff;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:1rem 1.5rem; position:sticky; top:0; z-index:1000;
+    }
+    .logo { font-size:1.6rem; font-weight:600; }
+    nav ul { list-style:none; display:flex; gap:1rem; }
+    nav a { color:#fff; font-weight:500; transition:opacity .2s; }
+    nav a:hover { opacity:.7; }
+    #burger { display:none; width:24px; height:18px; position:relative; cursor:pointer; }
+    #burger span { background:#fff; height:3px; width:100%; position:absolute; left:0; transition:.3s; }
+    #burger span:nth-child(1){ top:0; }
+    #burger span:nth-child(2){ top:7px; }
+    #burger span:nth-child(3){ top:14px; }
+    @media(max-width:700px) {
+      nav ul { display:none; }
+      #burger { display:block; }
+    }
+    .open nav ul {
+      display:flex; flex-direction:column; gap:1rem;
+      position:absolute; top:60px; left:0; width:100%;
+      background:var(--primary); padding:1rem;
+    }
+
+    /* HERO */
+    #hero {
+      height:80vh; min-height:480px;
+      background:url('hero.jpg') center/cover no-repeat;
+      position:relative; display:flex; align-items:center; justify-content:center;
+      text-align:center; color:#fff;
+    }
+    #hero::before {
+      content:""; position:absolute; inset:0; background:rgba(0,0,0,.45);
+    }
+    #hero .content { position:relative; z-index:1; padding:0 1rem; max-width:720px; }
+    #hero h1 { font-size:2.6rem; margin-bottom:1rem; }
+    #hero p  { font-size:1.1rem; margin-bottom:2rem; }
+    .btn {
+      background:var(--accent); color:#fff;
+      padding:.75rem 1.5rem; border:none; border-radius:var(--radius);
+      cursor:pointer; font-weight:600; display:inline-block;
+    }
+    .btn:hover { background:var(--highlight); }
+
+    /* SERVICES */
+    #services { padding:3.5rem 1.5rem; }
+    .two-col { display:grid; gap:2rem; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
+    .card {
+      background:#fff; border:1px solid #e0e4ea;
+      border-radius:var(--radius); box-shadow:0 2px 4px rgba(0,0,0,.05);
+      padding:1.25rem;
+    }
+    .card h3 { margin-bottom:.5rem; color:var(--primary); }
+
+    /* PROCESSUS */
+    #processus { padding:3.5rem 1.5rem; }
+    .steps { counter-reset:step; }
+    .steps li {
+      list-style:none; position:relative; padding-left:2.5rem; margin-bottom:1rem;
+    }
+    .steps li::before {
+      counter-increment:step; content:counter(step);
+      position:absolute; left:0; top:0;
+      background:var(--accent); color:#fff;
+      width:2rem; height:2rem; border-radius:50%;
+      display:flex; align-items:center; justify-content:center; font-weight:600;
+    }
 
     /* INVENTAIRE */
     #inventory { padding:3.5rem 1.5rem; }
@@ -33,20 +101,22 @@
       gap: 2rem;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     }
+    .inv-card {
+      display:flex; flex-direction:column;
+    }
     .inv-card .img-container {
-      width: 100%;
-      aspect-ratio: 1/1;           /* carré */
-      overflow: hidden;
-      border-top-left-radius: var(--radius);
-      border-top-right-radius: var(--radius);
-      margin-bottom: 1rem;
+      width:100%;
+      aspect-ratio:1/1;
+      overflow:hidden;
+      border-top-left-radius:var(--radius);
+      border-top-right-radius:var(--radius);
+      margin-bottom:1rem;
     }
     .inv-card .img-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: right center;  /* montre le côté droit */
-      display: block;
+      width:100%; height:100%;
+      object-fit:cover;
+      object-position:right center;
+      display:block;
     }
     .inv-card .card-body {
       background:#fff;
@@ -54,8 +124,11 @@
       border-radius:var(--radius);
       box-shadow:0 2px 4px rgba(0,0,0,.05);
       padding:1rem;
+      flex-grow:1;
+      display:flex; flex-direction:column;
     }
-    .specs { margin-top:1rem; font-size:.95rem; }
+    .inv-card h3 { margin-top:0; margin-bottom:.5rem; color:var(--primary); }
+    .specs { margin-top:auto; font-size:.95rem; }
     .specs summary {
       list-style:none; cursor:pointer; padding:.5rem; background:var(--accent);
       color:#fff; border:none; border-radius:var(--radius); font-weight:500;
@@ -94,17 +167,13 @@
       right: 20px;
       background: #25D366;
       color: #fff;
-      width: 50px;
-      height: 50px;
+      width: 50px; height: 50px;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      z-index: 1000;
+      display: flex; align-items:center; justify-content:center;
+      font-size:1.5rem; z-index:1000;
       box-shadow: 0 2px 5px rgba(0,0,0,.3);
     }
-    .whatsapp-btn:hover { opacity: .8; }
+    .whatsapp-btn:hover { opacity:.8; }
 
     /* FOOTER */
     footer { background:var(--primary); color:#fff; text-align:center; padding:2rem 1rem; font-size:.9rem; }
@@ -115,28 +184,93 @@
     }
   </style>
 </head>
+
 <body>
-  <header>…</header>
-  <section id="hero">…</section>
-  <section id="services">…</section>
-  <section id="processus">…</section>
+  <header>
+    <div class="logo">AutoImports</div>
+    <nav>
+      <ul>
+        <li><a href="#hero">Accueil</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#processus">Processus</a></li>
+        <li><a href="#inventory">Inventaire</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div id="burger">
+      <span></span><span></span><span></span>
+    </div>
+  </header>
+
+  <section id="hero">
+    <div class="content">
+      <h1>Votre Courtier d'Import Auto</h1>
+      <p>Nous facilitons l'importation de votre véhicule de rêve, partout dans le monde.</p>
+      <a href="#services" class="btn">Découvrez nos services</a>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container two-col">
+      <div class="card">
+        <h3>Consultation Personnalisée</h3>
+        <p>Analyse de vos besoins et sélection des meilleures offres.</p>
+      </div>
+      <div class="card">
+        <h3>Gestion des Documents</h3>
+        <p>Vous décharge des formalités douanières et administratives.</p>
+      </div>
+      <div class="card">
+        <h3>Suivi Logistique</h3>
+        <p>Coordination du transport maritime jusqu’à votre porte.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="processus">
+    <div class="container">
+      <h2>Notre Processus</h2>
+      <ul class="steps">
+        <li>Prise de contact et définition du budget</li>
+        <li>Sourcing des véhicules disponibles</li>
+        <li>Négociation et achat</li>
+        <li>Organisation du transport et dédouanement</li>
+        <li>Livraison internationale</li>
+      </ul>
+    </div>
+  </section>
 
   <section id="inventory">
     <div class="container">
       <h2>Sélectionnez votre voiture</h2>
       <div class="inventory">
         <div class="card inv-card">
-          <div class="card-body">
-            <a href="images/rush2022/car1-1.jpg"
-               class="glightbox img-container"
-               data-gallery="rush2022">
+          <div class="img-container">
+            <a href="images/rush2022/car1-1.jpg" class="glightbox" data-gallery="rush2022">
               <img src="images/rush2022/car1-1.jpg" alt="Toyota Rush 2022">
             </a>
+          </div>
+          <div class="card-body">
             <h3>Toyota Rush 2022</h3>
-            <details class="specs">…</details>
+            <details class="specs">
+              <summary>Voir les spécifications</summary>
+              <ul>
+                <li>Modèle : Toyota Rush</li>
+                <li>Année modèle : 2022</li>
+                <li>Kilométrage : 17 000 km</li>
+                <li>Cylindrée : 1 500 cm³</li>
+                <li>Transmission : Automatique (AT)</li>
+                <li>Carburant : Essence</li>
+                <li>Couleur extérieure : Blanc</li>
+                <li>Direction : Gauche</li>
+                <li>Traction : 2 roues motrices</li>
+                <li>Places : 7</li>
+                <li>Portes : 5</li>
+              </ul>
+            </details>
           </div>
         </div>
-        <!-- Dupliquez ce bloc pour chaque voiture -->
+        <!-- Dupliquez ce bloc .inv-card pour chaque véhicule -->
       </div>
       <div style="text-align:center; margin-top:1.5rem;">
         <p>Vous voulez un autre véhicule ?</p>
@@ -160,7 +294,11 @@
     </div>
   </section>
 
-  <footer>…</footer>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 AutoImports. Tous droits réservés.</p>
+    </div>
+  </footer>
 
   <!-- WhatsApp floating button -->
   <a href="https://wa.me/33612345678" class="whatsapp-btn" target="_blank" aria-label="WhatsApp">
@@ -170,26 +308,29 @@
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script>
-    // menu mobile
+    // mobile menu toggle
     document.getElementById('burger').addEventListener('click', () => {
       document.body.classList.toggle('open');
     });
-    // générer automatiquement les vignettes cachées pour chaque carte
+
+    // initialize GLightbox
+    const lightbox = GLightbox({ selector: '.glightbox', loop: true, touchNavigation: true });
+
+    // preload hidden gallery images for each card
     document.querySelectorAll('.inv-card').forEach(card => {
       const firstLink = card.querySelector('a.glightbox');
-      const href = firstLink.getAttribute('href');
-      const base = href.substring(0, href.lastIndexOf('-'));
-      const galleryName = firstLink.getAttribute('data-gallery');
+      const src = firstLink.getAttribute('href');
+      const gallery = firstLink.getAttribute('data-gallery');
+      const base = src.substring(0, src.lastIndexOf('-'));
       for (let i = 2; i <= 26; i++) {
         const a = document.createElement('a');
         a.href = `${base}-${i}.jpg`;
         a.className = 'glightbox';
-        a.setAttribute('data-gallery', galleryName);
+        a.setAttribute('data-gallery', gallery);
         a.style.display = 'none';
         card.appendChild(a);
       }
     });
-    GLightbox({ selector: '.glightbox', loop: true, touchNavigation: true });
   </script>
 </body>
 </html>
