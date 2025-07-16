@@ -1,0 +1,10 @@
+# 1. Go into your repo folder
+cd ~/autoimports-site
+
+# 2. Overwrite the repo’s index.html with your cleaned version
+cp ~/Downloads/autoimports-site/index_revised.html index.html
+
+# 3. Stage, commit & push
+git add index.html
+git commit -m "Remove Toyota Rush 2022 from inventory"
+git push
